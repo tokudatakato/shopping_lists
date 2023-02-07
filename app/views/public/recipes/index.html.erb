@@ -1,0 +1,19 @@
+<h5 class="d-inline-block text-left">レシピ一覧</h5>
+<div class="d-inline-block float-right h-2">タグ検索</div>
+
+<div class="container">
+  <% @recipes.each do |recipe| %>
+    <div class="row">
+      <div class="col-md-3">
+        プロフィール画像<br>
+        会員名
+      </div>
+      <div class="col-md-7">
+        <%= link_to recipe_path(recipe.id) do %>
+          <%= recipe.title %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @recipes %>
+</div>

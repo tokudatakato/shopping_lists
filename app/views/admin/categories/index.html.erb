@@ -1,0 +1,29 @@
+<h5 class="alert-secondary d-inline-block font-weight-bold mb-5 ml-5 px-3 mt-4" style="background-color: ghostwhite">カテゴリー一覧・追加</h5>
+     <div class="container rw-80 mx-auto">
+   <%= form_with model: Category, url:admin_categories_path, local:true do |f| %>
+
+   <div class="row">
+    <label class="col-md-2 col-sm-10 col-form-label w-100 d-inline">カテゴリー名</label>
+      <div class="col-md-2 col-sm-10 d-inline"><%= f.text_field :category_name, class: "form-control" %></div>
+
+   <div class="actions col-md-3"><%= f.submit '新規登録', class:'btn btn-sm px-4 w-50', style:'background-color: #F3F1EA' %></div>
+   <% end %>
+   </div>
+   <!--一覧表示-->
+   <table class="table mt-5 col-md-4">
+    <thead style="background-color: ghostwhite">
+     <tr>
+      <th>カテゴリー</th>
+      <th style="width: 40%">
+     </tr>
+  </thead>
+   <tbody>
+    <tr>
+     <% @categories.each do |category| %>
+     <td><%= category.category_name %></td>
+     <td><%= link_to "編集する", edit_admin_category_path(category.id), class:'btn btn-sm px-4', style:'background-color: #F3F1EA' %></td>
+    </tr>
+   <% end %>
+     </tbody>
+    </table>
+   </div>
