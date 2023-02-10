@@ -4,13 +4,15 @@ class Public::RecipesController < ApplicationController
     end
     
     def index
-        @recipes = Recipe.page(params[:page]).per(10)
+        @recipes = Recipe.all
+        # @recipes = Recipe.page(params[:page]).per(10)
     end
     
     def create
         @recipe = Recipe.new(recipe_params)
         @recipe.save
-        redirect_to recipe_path(@recipe.id)
+        redirect_to recipes_path
+        # redirect_to recipe_path(@recipe.id)
     end
     
     def show

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   scope module: :public do
     resources :recipes
+    resources :customers, only: [:index, :show, :edit, :update, :destroy]
+    get 'customers/confirm' => 'customers#confirm'
   end
 
   namespace :admin do

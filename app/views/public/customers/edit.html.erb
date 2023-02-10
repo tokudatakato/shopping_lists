@@ -1,0 +1,12 @@
+<h5>編集画面</h5>
+<%= form_with model: @customer, url: customers_path(@customer), method: :patch do |f| %>
+
+    <%= f.label :"nickname" %>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+
+    <%= f.label :"profile" %>
+    <%= f.text_field :profile, autofocus: true, autocomplete: "profile" %>
+
+    <%= f.label :"email" %>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+<% end>

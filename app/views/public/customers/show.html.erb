@@ -1,0 +1,23 @@
+<h5><%= @customer.nickname %>の投稿ページ</h5>
+フォロワー数
+フォロー数
+フォローする
+フォローを外す
+
+<!--アプリケーションhtmlで左からスライドする画面内に生じさせるかも-->
+<% if @customer == current_customer %>
+    <% link_to "登録情報を編集する" edit_customer_path(@customer) %>
+<% end %>
+
+<% @recipes.each do |recipe| %>
+    <% if @recipe.image.attached? %>
+        <% @recipe.image.each do |image| %>
+            <%= image_tag image.variant(resize: '500x500') %>
+        <% end %>
+    <% end %>
+    <%= link_to recipe_path(recipe) do %>
+        <%= recipe.title %>
+    <% end %>
+<% end %>
+    
+    

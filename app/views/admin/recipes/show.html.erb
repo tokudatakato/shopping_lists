@@ -3,8 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5">
-            <% if @post.image.attached? %>
-            <% @post.image.each do |image| %>
+            <% if @recipe.image.attached? %>
+            <% @recipe.image.each do |image| %>
             <%= image_tag image.variant(resize: '500x500') %>
             <% end %>
             <% end %>
