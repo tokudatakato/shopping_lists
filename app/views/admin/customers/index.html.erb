@@ -1,0 +1,28 @@
+<h5>ユーザー一覧</h5>
+<table>
+    <thead>
+        <tr>
+            <th>アイコン</th>
+            <th>ニックネーム</th>
+            <th>投稿数</th>
+            <th>フォロワー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @customers.each do |customer| %>
+            <tr>
+                <th>アイコン</th>
+                <th>
+                    <%= link_to admin_customer_path(customer) do %>
+                        <%= customer.nickname %>
+                    <% end %>
+                </th>
+                <th>投稿数%= customer.recipe.count %</th>
+                <th>
+                    フォロワー%= customer.follwed.count %
+                    <!--%= link_to "フォローする" relationship_path %>-->
+                </th>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

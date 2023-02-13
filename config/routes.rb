@@ -2,14 +2,18 @@ Rails.application.routes.draw do
   
   scope module: :public do
     resources :recipes
+    resources :items, only: [:index, :show]
     resources :customers, only: [:index, :show, :edit, :update, :destroy]
     get 'customers/confirm' => 'customers#confirm'
+    resources :categories, only: [:index, :show]
+    resources :lists, only: [:index, :create, :show, :destroy]
   end
 
   namespace :admin do
     resources :recipes
     resources :items
     resources :categories, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :destory]
   end
   
   # 顧客用

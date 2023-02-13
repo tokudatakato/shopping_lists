@@ -1,0 +1,8 @@
+<h5>カテゴリー詳細</h5>
+<% @items.each do |item| %>
+  <%= link_to item_path(item) do %>
+    画像
+  <% end %>
+<%= item.item_name %>
+￥<%= item.price %>
+<% end %>

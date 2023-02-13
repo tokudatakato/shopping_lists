@@ -1,8 +1,8 @@
 <h5>投稿者一覧</h5>
 
 <% @customer.each do |customer| %>
-    <%= image_tag customer.get_profile_image.variant(resize: '500x500') %>
-    <% link_to customer_path(customer) do %>
+    %= image_tag customer.get_profile_image.variant(resize: '500x500') %>
+    <%= link_to customer_path(customer) do %>
         <% customer.nickname %>
     <% end %>
 

@@ -1,54 +1,54 @@
 <h5 class="alert-secondary d-inline-block font-weight-bold mb-5 ml-5 px-3 mt-4" style="background-color: ghostwhite">商品新規登録</h5>
-   <div class="container-fluid w-50 mx-auto">
-   <%= form_with model: @item, url:admin_items_path, local:true do |f| %>
-   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">商品画像</label>
-       <div class="col-sm-10">
+<div class="container-fluid w-50 mx-auto">
+  <%= form_with model: @item, url:admin_items_path, local:true do |f| %>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <%= f.label :image, "商品画像" %><br>
         <%= f.file_field :image, accept: "image/*", class: "custom-file-input" %>
         <label class="custom-file-label" data-browse="参照">ファイル選択...</label>
       </div>
-     </div>
-
-   <div class="form-group row">
-        <label class="col-sm-2 col-form-label">商品名</label>
-       <div class="col-lg-4">
-        <%= f.text_field :item_name, class: "form-control"%>
-       </div>
     </div>
 
-    <div class="form-group row">
-       <label class="col-sm-2 col-form-label">商品説明</label>
-    <div class="col-lg-4">
-     <%= f.text_area :description, class: "form-control" %>
-   </div>
+<div class="form-group row">
+  <div class="col-lg-4">
+    <%= f.label :item_name, "商品名" %><br>
+    <%= f.text_field :item_name, class: "form-control"%>
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <%= f.label :description, "説明文" %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group row">
+<div class="col-lg-4">
+<%= f.label :category_name, "カテゴリ" %><br>
+<%= f.collection_select :category_id, Category.all, :id, :category_name, class: "form-control", include_blank: "選択して下さい"   %> 
+</div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <%= f.label :price, "税抜き価格" %><br>
+    <%= f.text_field :price, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="form-group row">
-     <label class="col-sm-2 col-form-label">カテゴリー</label>
-     <div class="col-lg-4">
-         <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :category_name), {}, {class: "form-control"} %>
-   </div>
+<div class="form-group row">
+  <div class="col-lg-4">
+    <%= f.label :is_stock, "在庫ステータス" %><br>
+    <%= f.radio_button :is_stock, "true", class: "checkbox" %>
+    <%= f.label :is_stock, "在庫あり", class: "radio" %>
+    <%= f.radio_button :is_stock, "false", class: "checkbox" %>
+    <%= f.label :is_stock, "在庫なし", class: "radio" %>
   </div>
+</div>
 
-  <div class="form-group row">
-     <label class="col-sm-2 col-form-label">税抜価格</label>
-      <div class="col-lg-4">
-       <%= f.text_field :price, class: "form-control" %>
-      </div>
-     </div>
-
-  <div class="form-group row">
-      <label class="col-sm-3 col-form-label">在庫ステータス</label>
-     <div class="col-lg-4">
-      <%= f.radio_button :is_stock, "true", class: "checkbox" %>
-      <%= f.label :is_stock, "在庫あり", class: "radio" %>
-      <%= f.radio_button :is_stock, "false", class: "checkbox" %>
-      <%= f.label :is_stock, "在庫なし", class: "radio" %>
-     </div>
-  </div>
-
-   <div class="actions">
-     <%= f.submit '商品登録', class:'btn btn-sm px-4 w-25', style:"background-color: #F3F1EA" %>
-   </div>
-   <% end %>
-  </div>
+<div class="actions">
+<%= f.submit '商品登録', class:'btn btn-sm px-4 w-25', style:"background-color: #F3F1EA" %>
+</div>
+<% end %>
+</div>

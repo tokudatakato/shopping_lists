@@ -2,11 +2,11 @@
 <%= form_with model: @customer, url: customers_path(@customer), method: :patch do |f| %>
 
     <%= f.label :"nickname" %>
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %><br>
 
     <%= f.label :"profile" %>
-    <%= f.text_field :profile, autofocus: true, autocomplete: "profile" %>
+    <%= f.text_area :profile, autofocus: true, autocomplete: "profile" %><br>
 
     <%= f.label :"email" %>
     <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-<% end>
+<% end %>

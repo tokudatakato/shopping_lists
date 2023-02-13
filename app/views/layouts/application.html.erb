@@ -11,6 +11,31 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="head d-flex">
+        <button id="js-trigger">アイコン画像</button>
+        <div class="f-right">
+          <%= link_to "商品", items_path, class: 'btn' %>
+          <%= link_to "レシピ", recipes_path, class: 'btn' %>
+          <%= link_to "リスト", lists_path, class:'btn' %>
+          <%= link_to "投稿者", customers_path, class: 'btn' %>
+        </div>
+      </div>
+      <nav id="sidebar">
+        <ul>
+          <li>ユーザー名</li>
+          <li>follow　follower</li>
+          <li>マイページ</li>
+          <li>ユーザー編集</li>
+          <li>ログアウト</li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+      
+      <%= yield %>
+    </main>
+    
   </body>
 </html>

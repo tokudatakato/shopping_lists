@@ -1,13 +1,6 @@
 <h5><%= @customer.nickname %>の投稿ページ</h5>
 フォロワー数
 フォロー数
-フォローする
-フォローを外す
-
-<!--アプリケーションhtmlで左からスライドする画面内に生じさせるかも-->
-<% if @customer == current_customer %>
-    <%= link_to "登録情報を編集する", edit_customer_path(@customer) %>
-<% end %>
 
 <% @recipes.each do |recipe| %>
     <% if @recipe.image.attached? %>
@@ -19,5 +12,5 @@
         <%= recipe.title %>
     <% end %>
 <% end %>
-    
-    
+
+<% link_to "削除する", admin_customer_path(@customer), method: :delete, "data-confirm" => "本当に削除しますか？" %>

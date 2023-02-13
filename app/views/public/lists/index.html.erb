@@ -1,0 +1,10 @@
+<h5>リスト一覧</h5>
+<%= form_with model: @list, url:lists_path, local:true do |f| %>
+  <%= f.text_field :list_name %>
+  <%= f.submit "リスト追加" %>
+<% end %>
+
+<% @lists.each do |list| %>
+  <%= list.list_name %>
+  <%= link_to "削除", list_path(list), method: :delete %>
+<% end %>
