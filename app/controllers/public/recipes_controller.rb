@@ -37,7 +37,7 @@ class Public::RecipesController < ApplicationController
     private
     
     def recipe_params
-        params.require(:recipe).permit(:title, :body, image: [])
+        params.require(:recipe).permit(:customer_id, :comment_id, :like_id,  :title, :body, image: [])
     end
     
 
