@@ -1,7 +1,7 @@
 class Public::CustomersController < ApplicationController
     
     def index
-        @customer = Customer.all
+        @customers = Customer.all
         # レシピ投稿をしているユーザーだけを表示させる
     end
     
@@ -33,9 +33,15 @@ class Public::CustomersController < ApplicationController
 
     def confirm
     end
+    
+    def likes
+        @customer = Customer.find(params[:id])
+        likes= Like.where(customer_id: @customer.id).pluck(:recipe_id)
+        @like_recipes = Recipe.find(likes)
+    end
         
     private
         def customer_params
-            params.require(:customer).permit(:nickname, :shopping_list_id, :comment_id, :like_id, :email, :profile)
+            params.require(:customer).permit(:nickname, :shopping_list_id, :comment_id, :like_id, :email, :profile, :icon_image)
         end
 end

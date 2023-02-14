@@ -1,0 +1,2 @@
+$("#like_list_<%= @recipe.id %>").remove(); 
+$('#recipe_<%= @recipe.id %>').html("<%= j(render partial: 'likes/like', locals: { recipe: @recipe }) %>");

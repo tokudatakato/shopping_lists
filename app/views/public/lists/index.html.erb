@@ -1,6 +1,7 @@
 <h5>リスト一覧</h5>
 <%= form_with model: @list, url:lists_path, local:true do |f| %>
   <%= f.text_field :list_name %>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
   <%= f.submit "リスト追加" %>
 <% end %>
 

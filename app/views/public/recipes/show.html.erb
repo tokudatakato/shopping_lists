@@ -1,18 +1,22 @@
 <h5>投稿詳細</h5>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <% if @post.image.attached? %>
-            <% @post.image.each do |image| %>
-            <%= image_tag image.variant(resize: '500x500') %>
-            <% end %>
-            <% end %>
-        </div>
-        <div class="col-md-7">
-            <%= @recipe.title %>
-            <%= @recipe.nickname %>
-            <%= @recipe.body %>
-        </div>
+  <div class="row">
+    <div class="col-md-5">
+      <% if @recipe.images.attached? %>
+        <% @recipe.images.each do |image| %>
+          <%= image_tag image.variant(resize: '80x80') %>
+        <% end %>
+      <% end %>
     </div>
+    <div class="col-md-7">
+      <%= @recipe.title %>
+      <%= @recipe.customer.nickname %>
+      <%= @recipe.body %>
+      <div id="recipe_<%= @recipe.id %>">
+        <%= render "likes/like", recipe: @recipe %>
+        likes
+      </div>
+    </div>
+  </div>
 </div>

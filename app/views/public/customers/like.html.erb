@@ -1,0 +1,4 @@
+<h5>いいね一覧</h5>
+<% @like_recipes.each do |recipe| %>
+  <%= render 'customers/like_content', recipe: recipe %>
+<% end %>

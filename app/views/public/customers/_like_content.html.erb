@@ -1,0 +1,13 @@
+<div id="like_list_<%= recipe.id %>">
+  <% @customer = recipe.customer %>
+  <% if @customer.icon_image.attached? %>
+    <%= image_tag customer.icon_image, size:"30x30" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "30x30" %>
+  <% end %>
+  <%= recipe.customer.nickname %>
+  <%= link_to recipe_path(recipe.id) do %>
+    <%= recipe.title %>
+  <% end %>
+  <div id="recipe_<%= recipe.id %>"><%= render "likes/like", recipe: recipe %></div>
+</div>

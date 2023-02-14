@@ -1,10 +1,20 @@
 <h5>投稿者一覧</h5>
 
-<% @customer.each do |customer| %>
-    %= image_tag customer.get_profile_image.variant(resize: '500x500') %>
-    <%= link_to customer_path(customer) do %>
-        <% customer.nickname %>
+<% @customers.each do |customer| %>
+  <% if current_customer.icon_image.attached? %>
+    <%= image_tag customer.icon_image, size:"80x80" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "80x80" %>
+  <% end %>
+  <%= link_to customer_path(customer) do %>
+    <% customer.nickname %>
+  <% end %>
+  
+  <% if customer != current_customer %>
+    <% if current_customer.following?(customer) %>
+      <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
     <% end %>
-
-    フォロー系
+  <% end %>
 <% end %>
