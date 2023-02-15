@@ -1,4 +1,4 @@
-class Public::RelationshipController < ApplicationController
+class Public::RelationshipsController < ApplicationController
   # フォローするとき
   def create
     current_customer.follow(params[:customer_id])

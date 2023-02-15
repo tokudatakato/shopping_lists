@@ -14,7 +14,7 @@
       <%= @recipe.customer.nickname %>
       <%= @recipe.body %>
       <div id="recipe_<%= @recipe.id %>">
-        <%= render "likes/like", recipe: @recipe %>
+        <%= render "public/likes/like", recipe: @recipe %>
         likes
       </div>
     </div>

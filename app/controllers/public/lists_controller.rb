@@ -15,9 +15,9 @@ class Public::ListsController < ApplicationController
     redirect_to lists_path
   end
   
-  def destory
+  def destroy
     @list = List.find(params[:id])
-    @list.destory
+    @list.destroy
   end
   
   private

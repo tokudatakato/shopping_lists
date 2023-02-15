@@ -24,13 +24,6 @@ class Public::CustomersController < ApplicationController
         end
     end
 
-    def destroy
-        @customer = current_customer
-        @customer.destroy
-        redirect_to recipes_path
-        # リダイレクト先要検討
-    end
-
     def confirm
     end
     

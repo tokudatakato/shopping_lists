@@ -35,11 +35,10 @@
           <li>ユーザー名</li>
           <li>
           <!--ルートエラー！-->
-            <% @customer = current_customer %>
-            <%= link_to "フォロー", customer_followings_path(@customer) %>
-            <%= link_to "フォロワー", customer_followers_path(@customer) %>
+            <%= link_to "フォロー", customer_followings_path(current_customer) %>
+            <%= link_to "フォロワー", customer_followers_path(current_customer) %>
           </li>
-          <li><%= link_to "お気に入りレシピ", likes_customer_path(@customer) %></li>
+          <li><%= link_to "お気に入りレシピ", likes_customer_path(current_customer) %></li>
           <li>マイページ</li>
           <li>ユーザー編集</li>
           <li>ログアウト</li>
@@ -53,6 +52,6 @@
       
       <%= yield %>
     </main>
-    
+    <h1 class="jquery">Hello jQuery!</h1>
   </body>
 </html>

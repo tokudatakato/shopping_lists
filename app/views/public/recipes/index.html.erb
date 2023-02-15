@@ -15,7 +15,7 @@
         <%= recipe.title %>
       <% end %>
       <div id="recipe_<%= recipe.id %>">
-        <%= render partial: 'likes/like', locals: {recipe: recipe} %>
+        <%= render partial: 'public/likes/like', locals: {recipe: recipe} %>
         likes
       </div>
     </div>

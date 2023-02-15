@@ -1,4 +1,4 @@
-<% if recipe.liked_by?(current_user) %>
+<% if recipe.liked_by?(current_customer) %>
   <%= link_to recipe_likes_path(recipe), method: :delete, remote:true do %>
     ♥<%= recipe.likes.count %>
   <% end %>

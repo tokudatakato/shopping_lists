@@ -21,7 +21,8 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application" 
 import "../stylesheets/likes"
-import "../sidebar" 
+import "sidebar.js" 
+import "script.js" 
 
 Rails.start()
 Turbolinks.start()
