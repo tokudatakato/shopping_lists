@@ -6,6 +6,6 @@
 <% end %>
 
 <% @lists.each do |list| %>
-  <%= list.list_name %>
+  <%= link_to list.list_name, list_path(list) %>
   <%= link_to "削除", list_path(list), method: :delete %>
 <% end %>

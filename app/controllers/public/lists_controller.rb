@@ -1,7 +1,11 @@
 class Public::ListsController < ApplicationController
   def index
-    @lists = List.all
+    @lists = current_customer.lists
     @list = List.new
+  end
+  
+  def show
+    @list = List.find(params[:id])
   end
   
   def create
@@ -12,7 +16,8 @@ class Public::ListsController < ApplicationController
   end
   
   def destory
-    @list = List.destory
+    @list = List.find(params[:id])
+    @list.destory
   end
   
   private
