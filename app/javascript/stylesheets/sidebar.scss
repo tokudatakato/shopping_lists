@@ -1,0 +1,42 @@
+/* ボタン */
+.js-trigger {
+  border: 1px solid #999;
+  background: transparent;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.f-right {
+  margin-left: auto;
+}
+
+/* メニュー */
+.sidebar {
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  left: 0;
+  overflow-x: hidden;
+  text-align: center;
+  width: 0;
+  transition: .3s;
+}
+
+.nav-item {
+  margin: 10px 0;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.open-sidebar {
+  width: 30%;
+}
+
+.slide-right {
+  width: 70%;
+  float: right;
+  transition: 1s;
+}

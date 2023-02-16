@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_14_205218) do
+ActiveRecord::Schema.define(version: 2023_02_16_023312) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(version: 2023_02_14_205218) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "label"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label"], name: "index_hashtags_on_label", unique: true
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "category_id", null: false
     t.integer "list_item_id"
@@ -110,6 +117,16 @@ ActiveRecord::Schema.define(version: 2023_02_14_205218) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recipe_taggings", force: :cascade do |t|
+    t.integer "reicpe_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"recipe_id\", \"hashtag_id\"", name: "index_recipe_taggings_on_recipe_id_and_hashtag_id", unique: true
+    t.index ["hashtag_id"], name: "index_recipe_taggings_on_hashtag_id"
+    t.index ["reicpe_id"], name: "index_recipe_taggings_on_reicpe_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "comment_id"
@@ -131,4 +148,6 @@ ActiveRecord::Schema.define(version: 2023_02_14_205218) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "recipe_taggings", "hashtags"
+  add_foreign_key "recipe_taggings", "reicpes", on_delete: :cascade
 end

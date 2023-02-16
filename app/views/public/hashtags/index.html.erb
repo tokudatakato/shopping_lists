@@ -1,8 +1,6 @@
-<h5 class="d-inline-block text-left">レシピ一覧</h5>
-<div class="d-inline-block float-right h-2">タグ検索</div>
+<h2 class="text-center text-secondary mt-5"><%= "#" + @label %>のタグを含む投稿一覧</h2>
 
-
-  <% @recipes.each do |recipe| %>
+<% @recipes.each do |recipe| %>
     <div class="row">
       <% @customer = recipe.customer %>
       <% if @customer.icon_image.attached? %>
@@ -19,10 +17,8 @@
         likes
       </div>
     </div>
-    <% body_and_hashtags_in_array(recipe.body).each do |word| %>
-     < %= word %>
-    <% end %>
   <% end %>
   
-  <!--%= paginate @recipes %>-->
-
+  <% body_and_hashtags_in_array(recipe.body).each do |word| %>
+    <%= word %>
+  <% end %>

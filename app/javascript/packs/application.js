@@ -12,7 +12,7 @@ if(trigger){
 }
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+//import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
@@ -21,11 +21,11 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application" 
 import "../stylesheets/likes"
+import "../stylesheets/sidebar"
 import "sidebar.js" 
-import "script.js" 
 
 Rails.start()
-Turbolinks.start()
+//Turbolinks.start()
 ActiveStorage.start()
 
 //= require jquery

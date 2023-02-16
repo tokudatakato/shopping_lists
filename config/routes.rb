@@ -34,6 +34,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'customers/confirm' => 'customers#confirm'
     resources :categories, only: [:index, :show]
     resources :lists, only: [:index, :create, :show, :destroy]
+    get '/recipe/hashtag/:label_name', to: 'hashtags#index'
   end
 
   namespace :admin do

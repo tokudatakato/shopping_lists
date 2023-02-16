@@ -9,9 +9,9 @@ class Public::ListsController < ApplicationController
   end
   
   def create
-    @list = List.new(list_params)
-    @list.save
-    flash.now[:danger]=@list.errors.full_messages.join
+    @list_item = ListItem.new(list_params)
+    @list_item.save
+    flash.now[:danger]=@list_item.errors.full_messages.join
     redirect_to lists_path
   end
   
@@ -22,6 +22,6 @@ class Public::ListsController < ApplicationController
   
   private
   def list_params
-    params.require(:list).permit(:list_name, :customer_id, :list_item_id)
+    params.require(:list_item).permit(:list_id, :item_id)
   end
 end

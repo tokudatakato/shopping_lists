@@ -5,53 +5,52 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <link rel="stylesheet" href="stylesheet/sidebar.scss">
+    <link rel="stylesheet" href="../stylesheets/likes.css">
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
     <header>
       <div class="head d-flex">
         <% if customer_signed_in? %>
-          <button id="js-trigger">
+          <bottom class="js-trigger m-0 p-0 ml-4">
             <% if current_customer.icon_image.attached? %>
-              <%= image_tag customer.icon_image, size:"30x30" %>
+              <%= image_tag current_customer.icon_image, size:"50x50" %>
             <% else %>
               <%= image_tag 'no_image', size: "30x30" %>
             <% end %>
-          </button>
+          </bottom>
         <% end %>
         <div class="f-right">
           <%= link_to "商品", items_path, class: 'btn' %>
           <%= link_to "レシピ", recipes_path, class: 'btn' %>
           <%= link_to "リスト", lists_path, class:'btn' %>
           <%= link_to "投稿者", customers_path, class: 'btn' %>
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
         </div>
       </div>
-      <nav id="sidebar">
-        <ul>
-          <li>ユーザー名</li>
-          <li>
-          <!--ルートエラー！-->
-            <%= link_to "フォロー", customer_followings_path(current_customer) %>
-            <%= link_to "フォロワー", customer_followers_path(current_customer) %>
-          </li>
-          <li><%= link_to "お気に入りレシピ", likes_customer_path(current_customer) %></li>
-          <li>マイページ</li>
-          <li>ユーザー編集</li>
-          <li>ログアウト</li>
-
-
-        </ul>
-      </nav>
     </header>
     
     <main>
-      
-      <%= yield %>
+      <div class="sidebar">
+        <ul>
+          <li class="nav-item"><%= link_to current_customer.nickname, customer_path(current_customer) %></li>
+          <li class="nav-item">
+            <%= link_to "フォロー", customer_followings_path(current_customer) %>
+            <%= link_to "フォロワー", customer_followers_path(current_customer) %>
+          </li>
+          <li class="nav-item"><%= link_to "お気に入りレシピ", likes_customer_path(current_customer) %></li>
+          <li class="nav-item"><% link_to "ユーザー編集", edit_customer_path(current_customer) %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+        </ul>
+      </div>
+      <div class="main-contents my-3 mx-4">
+        <%= yield %>
+      </div></div> 
     </main>
-    <h1 class="jquery">Hello jQuery!</h1>
+
   </body>
 </html>

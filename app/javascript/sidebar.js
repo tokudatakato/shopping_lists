@@ -1,6 +1,7 @@
-
-function actionToggle() {
-  var sidebar = document.getElementById('js-trigger');
-  sidebar.classList.toggle('open-sidebar');
-}
+$(document).ready(function () {
+  $('.js-trigger').on('click', function(){
+    $('.sidebar').toggleClass('open-sidebar');
+    $('.main-contents').toggleClass('slide-right');
+  });
+});
 

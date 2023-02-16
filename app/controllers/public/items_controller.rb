@@ -15,7 +15,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @list = List.new
+    @list_item = ListItem.new
   end
 
   def item_params
