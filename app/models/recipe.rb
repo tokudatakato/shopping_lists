@@ -17,9 +17,16 @@ class Recipe < ApplicationRecord
     after_create :generate_hashtag
     scope :recent, -> { order(created_at: :desc) }
     
+    # コメント機能
+    has_many :comments
+    
     # いいね判定メソッド
     def liked_by?(customer)
         likes.where(customer_id: customer.id).exists?
+    end
+    
+    def self.search(keyword)
+      where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
     end
     
     private

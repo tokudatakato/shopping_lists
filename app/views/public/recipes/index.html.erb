@@ -1,5 +1,13 @@
 <h5 class="d-inline-block text-left">レシピ一覧</h5>
-<div class="d-inline-block float-right h-2">タグ検索</div>
+<div class="d-inline-block h-2">
+  <%= link_to "レシピ投稿", new_recipe_path %>
+</div>
+<div class="search-form">
+  <%= form_with url: recipes_search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
 
 
   <% @recipes.each do |recipe| %>
@@ -20,7 +28,7 @@
       </div>
     </div>
     <% body_and_hashtags_in_array(recipe.body).each do |word| %>
-     < %= word %>
+     <%= word %>
     <% end %>
   <% end %>
   

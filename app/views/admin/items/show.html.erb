@@ -1,15 +1,20 @@
 <h5>商品詳細</h5>
 
 <div class="container">
-    <div class="col-md-4">
-        <!--%= image_tag @item.get_item_image(200,200) %>-->
-        カートセレクト
-        カートに追加
-    </div>
-    <div class="col-md-8">
-        <%= @item.item_name %>
-        <%= @item.price %>
-        <%= @item.description %>
-        <%= @item.item_name %>を使ったレシピ一覧へ
-    </div>
+  <div class="col-md-4">
+    <% if @item.item_image.attached? %>
+      <%= image_tag item.item_image, size:"80x80" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "80x80" %>
+    <% end %>
+      <!--%= image_tag @item.get_item_image(200,200) %>-->
+      カートセレクト
+      カートに追加
+  </div>
+  <div class="col-md-8">
+      <%= @item.item_name %>
+      <%= @item.price %>
+      <%= @item.description %>
+      <%= @item.item_name %>を使ったレシピ一覧へ
+  </div>
 </div>

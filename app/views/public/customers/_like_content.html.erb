@@ -1,13 +1,22 @@
 <div id="like_list_<%= recipe.id %>">
+  
+  <% if recipe.images.attached? %>
+    <% recipe.images.each do |image| %>
+      <%= image_tag image, size:'100x100' %>
+    <% end %>
+  <% end %><br>
+  <%= link_to recipe_path(recipe.id) do %>
+    <%= recipe.title %>
+  <% end %><br>
+  
   <% @customer = recipe.customer %>
   <% if @customer.icon_image.attached? %>
-    <%= image_tag customer.icon_image, size:"30x30" %>
+    <%= image_tag @customer.icon_image, size:"30x30" %>
   <% else %>
     <%= image_tag 'no_image', size: "30x30" %>
   <% end %>
   <%= recipe.customer.nickname %>
-  <%= link_to recipe_path(recipe.id) do %>
-    <%= recipe.title %>
-  <% end %>
-  <div id="recipe_<%= recipe.id %>"><%= render "likes/like", recipe: recipe %></div>
+
+  <div id="recipe_<%= recipe.id %>"><%= render "public/likes/like", recipe: recipe %></div>
+  <!--星レビュー-->
 </div>

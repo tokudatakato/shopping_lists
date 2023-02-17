@@ -1,6 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 header {
   margin-bottom: 5px;
   border-bottom: 2px solid #000;
+}
+
+.item-index {
+  
+}
+
+.search-form {
+  float: right;
 }

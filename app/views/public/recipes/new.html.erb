@@ -2,7 +2,7 @@
 
 <%= form_with model: @recipe, url:recipes_path, local:true do |f| %>
     <div class="col-sm-10">
-        <%= f.file_field :images, accept: "image/*", class: "custom-file-input", multiple: true %>
+        <%= f.file_field :images, accept: "image/*", class: "custom-file-input", direct_upload: true, multiple: true %>
         <label class="custom-file-label" data-browse="参照">ファイル選択...</label>
     </div>
     

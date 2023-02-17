@@ -7,15 +7,23 @@ class Public::ItemsController < ApplicationController
        
       # category_idと紐づく投稿を取得
       @items = @category.items.order(created_at: :desc).all
+      @list_item = ListItem.new
     else
       # 投稿すべてを取得
       @items = Item.order(created_at: :desc).all
+      @list_item = ListItem.new
     end
   end
 
   def show
     @item = Item.find(params[:id])
     @list_item = ListItem.new
+  end
+  
+  def search
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
   end
 
   def item_params

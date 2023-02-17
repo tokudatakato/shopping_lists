@@ -1,2 +1,12 @@
-退会するとデータは完全に消去されます。
-本当に退会しますか？
+<h6 class="text-center font-weight-bold my-4 pt-5">本当に退会しますか？</h6>
+<p class="text-center font-weight-bold small mb-4">退会すると、会員登録情報や<br>
+  退会するとデータは完全に消去されます。
+  本当に退会しますか？
+</p>
+
+<div class="text-center">
+  <%= link_to '退会しない', edit_customers_path, class:'btn btn-sm mr-3', style:"background-color: #F3F1EA" %>
+  <%= link_to '退会する', withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class:'btn btn-sm btn-danger' %>
+</div>
+
+No template for interactive request！！

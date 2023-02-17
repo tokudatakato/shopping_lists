@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="stylesheet/sidebar.scss">
     <link rel="stylesheet" href="../stylesheets/likes.css">
 
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://kit.fontawesome.com/902f9c9eeb.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -47,7 +52,7 @@
           <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
         </ul>
       </div>
-      <div class="main-contents my-3 mx-4">
+      <div class="main-contents my-3 ml-5">
         <%= yield %>
       </div></div> 
     </main>

@@ -6,6 +6,7 @@ class Public::ListsController < ApplicationController
   
   def show
     @list = List.find(params[:id])
+    @list_items = ListItem.find(list_id = @list.id)
   end
   
   def create

@@ -6,7 +6,7 @@ class Public::HashtagsController < ApplicationController
     @label = params[:label_name]
     hashtag = Hashtag.find_by(label: @label)
     if hashtag.nil?
-      redirect_to root_path, alert: "##{@label}のタグがついた投稿は存在しません"
+      redirect_to recipes_path, alert: "##{@label}のタグがついた投稿は存在しません"
     else
       @recipes = hashtag.recipes.includes(:images, :customer, :likes, :comments).recent
     end

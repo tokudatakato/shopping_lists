@@ -20,9 +20,11 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application" 
+import '@fortawesome/fontawesome-free/js/all'
 import "../stylesheets/likes"
 import "../stylesheets/sidebar"
 import "sidebar.js" 
+import "slick"
 
 Rails.start()
 //Turbolinks.start()
@@ -30,5 +32,6 @@ ActiveStorage.start()
 
 //= require jquery
 //= require rails-ujs
-
+window.$ = window.jQuery = require('jquery'); 
+require('packs/raty')
 

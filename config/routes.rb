@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
   
+    # 顧客用
+    # URL /customers/sign_in ...
+    devise_for :customers,skip: [:passwords], controllers: {
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
+    }  
+    
+  
   namespace :public do
     get 'relationship/followings'
     get 'relationship/followers'
   end
 
-# 顧客用
-# URL /customers/sign_in ...
-devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}  
 
 # 管理者用
 # URL /admin/sign_in ...
@@ -19,6 +21,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
   
   scope module: :public do
+    root to: "homes#top"
+    # 検索機能
+    get 'items/search' => 'items#search'
+    get 'recipes/search' => 'recipes#search'
+    
+    # コメント機能
+    resources :comments, only: [:create]
+    
+    get 'customers/confirm' => 'customers#confirm'
+    
     resources :customers, only: [:index, :show, :edit, :update, :destroy] do
       member do
         get :likes
@@ -27,6 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
+    
     resources :recipes do
       resource :likes, only: [:create, :destroy]
     end
@@ -36,6 +49,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :lists, only: [:index, :create, :show, :destroy]
     get '/recipe/hashtag/:label_name', to: 'hashtags#index'
   end
+  
 
   namespace :admin do
     resources :recipes

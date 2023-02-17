@@ -3,8 +3,8 @@
   <%= form_with model: @item, url:admin_items_path, local:true do |f| %>
     <div class="form-group row">
       <div class="col-sm-10">
-        <%= f.label :image, "商品画像" %><br>
-        <%= f.file_field :image, accept: "image/*", class: "custom-file-input" %>
+        <%= f.label :item_image, "商品画像" %><br>
+        <%= f.file_field :item_image, accept: "image/*", class: "custom-file-input" %>
         <label class="custom-file-label" data-browse="参照">ファイル選択...</label>
       </div>
     </div>

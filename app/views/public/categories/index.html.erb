@@ -1,6 +1,6 @@
 <h5>カテゴリー一覧</h5>
 <% @categories.each do |category| %>
-    <%= link_to category_path(category) do %>
+    <%= link_to category_path(category), class: 'mr-4' do %>
         <%= category.category_name %>
     <% end %>
 <% end %>

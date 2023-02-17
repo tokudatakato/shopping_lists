@@ -1,4 +1,6 @@
 <h5>いいね一覧</h5>
 <% @like_recipes.each do |recipe| %>
-  <%= render 'customers/like_content', recipe: recipe %>
+<div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
+  <%= render 'like_content', recipe: recipe %>
+</div>
 <% end %>

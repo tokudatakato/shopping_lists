@@ -27,6 +27,15 @@ class Public::CustomersController < ApplicationController
     def confirm
     end
     
+    def destory
+        @customer = current_customer
+        if @customer.destory
+            redirect_to　root_path
+        else
+            render confirm
+        end
+    end
+    
     def likes
         @customer = Customer.find(params[:id])
         likes= Like.where(customer_id: @customer.id).pluck(:recipe_id)
