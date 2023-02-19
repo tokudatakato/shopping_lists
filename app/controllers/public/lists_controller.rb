@@ -6,7 +6,7 @@ class Public::ListsController < ApplicationController
   
   def show
     @list = List.find(params[:id])
-    @list_items = ListItem.find(list_id = @list.id)
+    # @list_items = ListItem.find(list_id = @list.id)
   end
   
   def create
@@ -20,6 +20,16 @@ class Public::ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.destroy
   end
+  
+  # def item_destroy
+  #   @list = List.find(params[:id])
+  #   @list_item = @list.items.find(params[:list_items_id])
+  #   if @list_item.destroy
+  #     redirect_to list_path(params[:id])
+  #   else
+  #     redirect_to list_path(params[:id])
+  #   end
+  # end
   
   private
   def list_params

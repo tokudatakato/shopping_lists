@@ -3,8 +3,8 @@ class Recipe < ApplicationRecord
     
     has_many :likes, dependent: :destroy
     has_many :comments, dependent: :destroy
-    has_many :tag_maps, dependent: :destroy
-    has_many :item_recipe_maps, dependent: :destroy
+    # has_many :tag_maps, dependent: :destroy
+    # has_many :item_recipe_maps, dependent: :destroy
     belongs_to :customer
     
     # いいね機能
