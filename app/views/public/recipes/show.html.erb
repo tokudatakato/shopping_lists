@@ -5,54 +5,61 @@
     <div class="col-md-5 slider">
       <% if @recipe.images.attached? %>
         <% @recipe.images.each do |image| %>
-          <%= image_tag image, class: "card-img-top show-img" %>
+          <%= image_tag image, class: "show-recipe-image" %>
         <% end %>
+      <% else %>
+        <%= image_tag 'no_image', size: "100x100" %>
       <% end %>
+      
+      <%= form_with model: @comment do |f| %>
+      <div class="ml-3 mb-5">
+        <%= f.hidden_field :recipe_id, value: @recipe.id %>
+        <div class="mt-5 text_center">
+          <%= f.label :content, 'コメント入力' %>
+          <%= f.text_field :content, class: "text-field" %>
+        </div>
+        
+        <div class="" id="star">
+          <%= f.label :star,'評価 ' %>
+          <%= f.hidden_field :star, id: :review_star %>
+        </div>
+      
+        <!-- 評価javascript -->
+        <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'comment[star]',
+          half: true,
+        });
+        </script> 
+        <%= f.submit 'コメント投稿', class: "btn btn-primary px-3" %>
+      </div>
+    <% end %>
     </div>
+    
     <div class="col-md-7">
       <%= @recipe.title %><br>
       <%= @recipe.customer.nickname %><br>
       
       <% if @recipe.customer == current_customer %>
-        <%= link_to "レシピ編集", edit_recipe_path(@recipe) %>
-        <%= link_to "レシピ削除", recipe_path(@recipe), method: :delete %><br>
+        <%= link_to "レシピ編集", edit_recipe_path(@recipe), class:'btn btn-primary px-3 mr-5' %>
+        <%= link_to "レシピ削除", recipe_path(@recipe), method: :delete, class:'btn btn-primary px-3' %><br>
       <% end %>
       
-      <%= @recipe.body %>
+      <!--%= @recipe.body %>-->
+      <% body_and_hashtags_in_array(@recipe.body).each do |word| %>
+       <%= word %>
+      <% end %>
+      
       <div id="recipe_<%= @recipe.id %>">
         <%= render "public/likes/like", recipe: @recipe %>
         likes
       </div>
-    </div>
-    
-    <%= form_with model: @comment do |f| %>
-      <%= f.hidden_field :recipe_id, value: @recipe.id %>
-      <div class="form-group row">
-        <%= f.label :content, 'コメント' %>
-        <%= f.text_field :content, class: "text-field" %>
-      </div>
       
-      <div class="form-group row" id="star">
-        <%= f.label :star,'評価 ' %>
-        <%= f.hidden_field :star, id: :review_star %>
-      </div>
-    
-      <!-- 評価javascript -->
-      <script>
-      $('#star').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'comment[star]',
-        half: true,
-      });
-      </script> 
-      
-      <%= f.submit '投稿', class: "submit-btn" %>
-    <% end %>
-    
-    <% @comments.each do |comment|%>
+      <% @comments.each do |comment|%>
       <div class=card>
         <p>内容:<%= comment.content %></p>
         <p>評価 :<%= comment.star %>点</p>
@@ -69,5 +76,8 @@
         </script>
       </div>
     <% end %>
+    </div>
+    
+    
   </div>
 </div>

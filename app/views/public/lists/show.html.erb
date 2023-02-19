@@ -1,6 +1,6 @@
 <h5>リスト詳細</h5>
 <%= @list.list_name %>
 
-<% @list_items.each do |list_item| %>
-<%= list_item.item.item_name %>
+<% @list.items.each do |list_item| %>
+<%= list_item.item_name %>
 <% end %>
