@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_many_attached :item_image
+  has_one_attached :item_image
   
   has_many :item_recipe_maps, dependent: :destroy
   has_many :list_items

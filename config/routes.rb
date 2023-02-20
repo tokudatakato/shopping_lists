@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :recipes
     resources :items
-    resources :categories, only: [:index, :create, :edit, :update]
+    resources :categories, only: [:index, :show, :create, :edit, :update]
     resources :customers, only: [:index, :show, :destory]
   end
   

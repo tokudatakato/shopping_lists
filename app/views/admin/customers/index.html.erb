@@ -1,5 +1,5 @@
 <h5>ユーザー一覧</h5>
-<table>
+<table style: "text-weight: none">
     <thead>
         <tr>
             <th>アイコン</th>
@@ -11,15 +11,21 @@
     <tbody>
         <% @customers.each do |customer| %>
             <tr>
-                <th>アイコン</th>
+                <th>
+                    <% if customer.icon_image.attached? %>
+                      <%= image_tag customer.icon_image, size:"80x80" %>
+                    <% else %>
+                      <%= image_tag 'no_image', size: "80x80" %>
+                    <% end %>
+                </th>
                 <th>
                     <%= link_to admin_customer_path(customer) do %>
                         <%= customer.nickname %>
                     <% end %>
                 </th>
-                <th>投稿数%= customer.recipe.count %</th>
+                <th>投稿数<%= customer.recipes.count %></th>
                 <th>
-                    フォロワー%= customer.follwed.count %
+                    フォロワー<%= customer.followers.count %>
                     <!--%= link_to "フォローする" relationship_path %>-->
                 </th>
             </tr>

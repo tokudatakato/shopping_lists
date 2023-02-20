@@ -35,28 +35,35 @@
           half: true,
         });
         </script> 
-        <%= f.submit 'コメント投稿', class: "btn btn-primary px-3" %>
+        <%= f.submit 'コメント投稿', class: "btn-primary px-3" %>
       </div>
     <% end %>
     </div>
     
     <div class="col-md-7">
-      <%= @recipe.title %><br>
-      <%= @recipe.customer.nickname %><br>
+      <div class="mb-2"><%= @recipe.title %></div>
+      
+      <div class="mb-2">投稿者　<%= @recipe.customer.nickname %></div>
       
       <% if @recipe.customer == current_customer %>
-        <%= link_to "レシピ編集", edit_recipe_path(@recipe), class:'btn btn-primary px-3 mr-5' %>
-        <%= link_to "レシピ削除", recipe_path(@recipe), method: :delete, class:'btn btn-primary px-3' %><br>
-      <% end %>
-      
-      <!--%= @recipe.body %>-->
-      <% body_and_hashtags_in_array(@recipe.body).each do |word| %>
-       <%= word %>
+      <div class="d-inline-block">
+        <%= link_to "レシピ編集", edit_recipe_path(@recipe), class:'btn btn-sm  btn-success px-3 mr-4' %>
+      </div>
+        <div class="d-inline-block mb-2">
+          <%= button_to "レシピ削除", recipe_path(@recipe), method: :delete, class:'btn btn-sm btn-danger px-3' %>
+        </div>
       <% end %>
       
       <div id="recipe_<%= @recipe.id %>">
         <%= render "public/likes/like", recipe: @recipe %>
         likes
+      </div>
+      
+      <!--%= @recipe.body %>-->
+      <div class="new-line">
+        <% body_and_hashtags_in_array(@recipe.body).each do |word| %>
+         <%= word %>
+        <% end %>
       </div>
       
       <% @comments.each do |comment|%>

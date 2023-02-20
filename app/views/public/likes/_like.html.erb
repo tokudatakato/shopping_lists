@@ -1,10 +1,10 @@
 <% if recipe.liked_by?(current_customer) %>
   <%= link_to recipe_likes_path(recipe), method: :delete, remote:true do %>
-    ♥<%= recipe.likes.count %>
+    <%= recipe.likes.count %>♥
   <% end %>
   
 <% else %>
   <%= link_to recipe_likes_path(recipe), method: :post, remote:true do %>
-    ♡<%= recipe.likes.count %>
+    <%= recipe.likes.count %>♡
   <% end %>
 <% end %>

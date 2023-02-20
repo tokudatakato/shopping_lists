@@ -13,3 +13,7 @@ class Public::ListItemsController < ApplicationController
     # end
   end
 end
+
+# urlにリストidアイテムidのパラメーター
+# @list_item = LitsItem.where(list_id: params[:list_id]).find_by(item_id: params[:item_id])
+# @list_item.destroy

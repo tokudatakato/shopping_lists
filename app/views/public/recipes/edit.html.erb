@@ -2,7 +2,7 @@
 <%= form_with model: @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
    <div class="form-group row">
     <label class="col-sm-2 col-form-label">商品画像</label>
-       <div class="col-sm-10">
+       <div class="col-4 ml-3">
       <%= f.file_field :images, accept: "image/*", class: "custom-file-input", direct_upload: true, multiple: true %>
         <label class="custom-file-label" data-browse="参照">ファイル選択...</label>
       </div>
@@ -10,19 +10,19 @@
 
    <div class="form-group row">
         <label class="col-sm-2 col-form-label">タイトル</label>
-       <div class="col-lg-4">
+       <div class="col-5">
         <%= f.text_field :title, class: "form-control"%>
        </div>
     </div>
 
     <div class="form-group row">
        <label class="col-sm-2 col-form-label">本文</label>
-    <div class="col-lg-4">
+    <div class="col-8">
      <%= f.text_area :body, class: "form-control" %>
    </div>
   </div>
   
-  <div class="actions">
-     <%= f.submit '変更を保存', class:'btn btn-sm px-4 w-25', style:"background-color: #F3F1EA"  %>
+  <div class="mt-4 d-flex justify-content-center">
+     <%= f.submit '変更を保存', class:'btn-primary', style:'width: 120px'  %>
    </div>
    <% end %>

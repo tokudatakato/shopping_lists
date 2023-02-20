@@ -9,6 +9,8 @@ class Admin::CustomersController < ApplicationController
     end
 
     def destory
-        @customer = customer.destory
+        @customer = customer.find(params[:id])
+        @customer.destory
+        redirect_to admin_customers_path
     end
 end

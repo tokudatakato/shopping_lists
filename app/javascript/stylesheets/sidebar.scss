@@ -23,6 +23,7 @@
   text-align: center;
   width: 0;
   transition: .3s;
+  margin-top: 30px;
 }
 
 .nav-item {
@@ -32,11 +33,11 @@
 }
 
 .open-sidebar {
-  width: 30%;
+  width: 20%;
 }
 
 .slide-right {
-  width: 70%;
+  width: 77%;
   float: right;
   transition: 1s;
 }

@@ -22,26 +22,38 @@
     <header>
       <div class="head d-flex">
         <% if customer_signed_in? %>
-          <bottom class="js-trigger m-0 p-0 ml-4">
+          <bottom class="js-trigger p-0 ml-4 mb-2 mt-2">
             <% if current_customer.icon_image.attached? %>
               <%= image_tag current_customer.icon_image, size:"50x50" %>
             <% else %>
-              <%= image_tag 'no_image', size: "30x30" %>
+              <%= image_tag 'no_image', size: "50x50" %>
             <% end %>
           </bottom>
         <% end %>
         <div class="f-right">
-          <%= link_to "商品", items_path, class: 'btn' %>
-          <%= link_to "レシピ", recipes_path, class: 'btn' %>
-          <%= link_to "リスト", lists_path, class:'btn' %>
-          <%= link_to "投稿者", customers_path, class: 'btn' %>
+          <% if admin_signed_in? %>
+            <%= link_to "商品", admin_items_path, class: 'btn' %>
+            <%= link_to "レシピ", admin_recipes_path, class: 'btn' %>
+            <%= link_to "投稿者", admin_customers_path, class: 'btn' %>
+            
+          <% elsif customer_signed_in? %>
+            <%= link_to "商品", items_path, class: 'btn' %>
+            <%= link_to "レシピ", recipes_path, class: 'btn' %>
+            <%= link_to "リスト", lists_path, class:'btn' %>
+            <%= link_to "投稿者", customers_path, class: 'btn' %>
+            
+          <% else %>
+            <%= link_to "ログイン", new_customer_session_path %>
+            <%= link_to "サインイン", new_customer_registration_path %>
+            
+          <% end %>
         </div>
       </div>
     </header>
     
     <main>
       <% if customer_signed_in? %>
-        <div class="sidebar">
+        <div class="sidebar border-right mr-4">
           <ul>
             <li class="nav-item"><%= link_to current_customer.nickname, customer_path(current_customer) %></li>
             <li class="nav-item">

@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2023_02_16_161638) do
     t.string "nickname", null: false
     t.text "profile"
     t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "encrypted_password", default: ""
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -127,13 +127,13 @@ ActiveRecord::Schema.define(version: 2023_02_16_161638) do
   end
 
   create_table "recipe_taggings", force: :cascade do |t|
-    t.integer "reicpe_id"
+    t.integer "recipe_id"
     t.integer "hashtag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"recipe_id\", \"hashtag_id\"", name: "index_recipe_taggings_on_recipe_id_and_hashtag_id", unique: true
     t.index ["hashtag_id"], name: "index_recipe_taggings_on_hashtag_id"
-    t.index ["reicpe_id"], name: "index_recipe_taggings_on_reicpe_id"
+    t.index ["recipe_id", "hashtag_id"], name: "index_recipe_taggings_on_recipe_id_and_hashtag_id", unique: true
+    t.index ["recipe_id"], name: "index_recipe_taggings_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -153,10 +153,11 @@ ActiveRecord::Schema.define(version: 2023_02_16_161638) do
     t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "recipe_taggings", "hashtags"
-  add_foreign_key "recipe_taggings", "reicpes", on_delete: :cascade
+  add_foreign_key "recipe_taggings", "recipes", on_delete: :cascade
 end

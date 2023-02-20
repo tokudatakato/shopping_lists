@@ -8,6 +8,12 @@ class Admin::CategoriesController < ApplicationController
     @category.save
     redirect_to admin_categories_path
   end
+  
+  def show
+    @category = Category.find(params[:id])
+    # category_idと紐づく投稿を取得
+    @items = @category.items.order(created_at: :desc).all
+  end
 
   def edit
     @category = Category.find(params[:id])
