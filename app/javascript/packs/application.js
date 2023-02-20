@@ -23,7 +23,9 @@ import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 import "../stylesheets/likes"
 import "../stylesheets/sidebar"
+import "../stylesheets/checkbox"
 import "sidebar.js" 
+import "checkbox.js"
 import "slick"
 
 Rails.start()

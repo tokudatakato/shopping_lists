@@ -1,20 +1,35 @@
-<h5>商品詳細</h5>
-
-<div class="container">
-  <div class="col-md-4">
-    <% if @item.item_image.attached? %>
-      <%= image_tag item.item_image, size:"80x80" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "80x80" %>
-    <% end %>
-      <!--%= image_tag @item.get_item_image(200,200) %>-->
-      カートセレクト
-      カートに追加
-  </div>
-  <div class="col-md-8">
-      <%= @item.item_name %>
-      <%= @item.price %>
-      <%= @item.description %>
-      <%= @item.item_name %>を使ったレシピ一覧へ
-  </div>
+<div class="text-center">
+  <% if @item.item_image.attached? %>
+    <%= image_tag @item.item_image, size:"120x120" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "120x120" %>
+  <% end %><br>
+  
+  <table class="mx-auto mb-3">
+    <tr class="align-center">
+      <td class="pr-3">商品名</td> 
+      <td><%= @item.item_name %></td>
+    </tr>
+    <tr class="align-center">
+      <td class="pr-3">価格</td> 
+      <td>￥<%= @item.price %></td>
+    </tr>
+    <tr class="align-center">
+      <td class="pr-3">説明文</td> 
+      <td><div class="new-line"><%= @item.description %></div></td>
+    </tr>
+    <tr class="align-center">
+      <td class="pr-3">在庫ステータス</td> 
+      <td>
+        <% if @item.is_stock == true %>
+          在庫あり
+        <% else %>
+          在庫なし
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  
+  <%= button_to "商品編集", edit_admin_item_path(@item), class:'btn btn-sm btn-success' %>
+  
 </div>

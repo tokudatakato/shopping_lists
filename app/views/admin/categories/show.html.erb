@@ -1,0 +1,15 @@
+<h5>カテゴリー詳細</h5>
+<% @items.each do |item| %>
+  
+  <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
+    <% if item.item_image.attached? %>
+      <%= image_tag item.item_image, size:"80x80" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "80x80" %>
+    <% end %><br>
+    
+    <%= link_to item.item_name, admin_item_path(item) %><br>
+  
+    ￥<%= item.price %>
+  </div>
+<% end %>

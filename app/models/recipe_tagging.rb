@@ -1,4 +1,4 @@
-class PostTagging < ApplicationRecord
+class RecipeTagging < ApplicationRecord
     
   belongs_to :recipe
   belongs_to :hashtag

@@ -3,7 +3,7 @@
 
 <% @customers.each do |customer| %>
   <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
-    <% if current_customer.icon_image.attached? %>
+    <% if customer.icon_image.attached? %>
       <%= image_tag customer.icon_image, size:"80x80" %>
     <% else %>
       <%= image_tag 'no_image', size: "80x80" %>

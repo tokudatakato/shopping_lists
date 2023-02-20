@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.integer :customer_id, null: :false
       t.integer :recipe_id,   null: :false
       t.text :content
-      t.float :star,         null: :false
+      t.float :star
 
       t.timestamps
     end

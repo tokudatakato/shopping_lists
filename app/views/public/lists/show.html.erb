@@ -1,6 +1,14 @@
-<h5>リスト詳細</h5>
-<%= @list.list_name %>
+<h5 class="d-inline"><%= @list.list_name %>リスト詳細</h5>
+<div class="all-destroy mr-5">リスト内商品削除</div>
 
-<% @list_items.each do |list_item| %>
-<%= list_item.item.item_name %>
-<% end %>
+<ul class="list mt-4" style="list-style: none;">
+  <% @list.items.each do |list_item| %>
+    <li class="list__item mb-2 border-bottom pl-3">
+      <label class="label--checkbox">
+        <input type="checkbox" class="checkbox" checked>
+        <%= list_item.item_name %>
+      </label>
+      削除
+    </li>
+  <% end %>
+</ul>
