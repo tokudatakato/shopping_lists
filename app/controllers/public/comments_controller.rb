@@ -1,12 +1,9 @@
 class Public::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save
-      flash.now[:notice] = 'コメントを投稿しました'
-      render :recipe_comments
-    else
-      render 'recipes/show'
-    end
+    @comment.save
+    @recipe = @comment.recipe
+    @comments = @recipe.comments
   end
   
   def destroy
@@ -19,6 +16,6 @@ class Public::CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:comment_id, :recipe_id, :content, :star, :customer_id)
+      params.require(:comment).permit(:recipe_id, :content, :customer_id)
     end
 end

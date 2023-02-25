@@ -7,9 +7,10 @@ class Public::ListItemsController < ApplicationController
   end
   
   def destroy
+    @list = List.find(params[:list_id])
     @list_item = ListItem.find(params[:id])
     @list_item.destroy
-    redirect_to lists_path, notice: '商品が削除しました'
+    redirect_to list_path(@list), notice: '商品が削除しました'
   end
   
   def destroy_all

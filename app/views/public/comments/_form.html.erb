@@ -1,4 +1,4 @@
-<%= form_with model: comment do |f| %>
+<%= form_with model: comment, local: false do |f| %>
 <div class="ml-3 mb-5">
   <%= render 'layouts/error_messages', model: f.object %>
   <%= f.hidden_field :recipe_id, value: recipe.id %>

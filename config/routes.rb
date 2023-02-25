@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
   
   #ゲストログイン
-  devise_scope :customers do
+  devise_scope :customer do
     post 'customers/guest_log_in', to: 'public/sessions#guest_log_in'
   end
   
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   # 管理者用
   # URL /admin/sign_in ...
-  devise_for :admin, skip: [:passwords] ,controllers: {
+  devise_for :admin, skip: [:passwords], controllers: {
     sessions: "admin/sessions",
     registrations: "admin/registrations"
   }

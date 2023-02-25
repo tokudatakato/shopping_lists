@@ -11,7 +11,7 @@
         <input class="checks" type="checkbox" name="<%= @list.list_name %>" value="<%= list_item.item.item_name %>" >
         <%= list_item.item.item_name %>
       </label>
-      <%= link_to "削除", list_item_path(list_item.id), method: :delete, class:'btn btn-sm btn-danger' %>
+      <%= link_to "削除", list_item_path(id: list_item.id, list_id: @list.id), method: :delete, class:'btn btn-sm btn-danger' %>
     </li>
   <% end %>
 </ul>

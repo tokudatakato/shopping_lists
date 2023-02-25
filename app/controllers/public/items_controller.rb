@@ -23,6 +23,7 @@ class Public::ItemsController < ApplicationController
   end
   
   def search
+    @lists = current_customer.lists.all
     @items = Item.search(params[:keyword])
     @keyword = params[:keyword]
     render "index"
