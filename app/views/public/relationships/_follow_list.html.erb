@@ -1,22 +1,20 @@
 <% if customers.exists? %>
   <% customers.each do |customer| %>
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= customer.nickname %></td>
-          <td>フォロー数: <%= customer.followings.count %></td>
-          <td>フォロワー数: <%= customer.followers.count %></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
+      <% if customer.icon_image.attached? %>
+        <%= image_tag customer.icon_image, size:"80x80" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "80x80" %>
+      <% end %><br>
+      <%= link_to customer_path(customer) do %>
+        <% customer.nickname %>
+      <% end %>
+      <div>投稿数　<%= customer.recipes.count %></div>
+      
+      フォロー数: <%= customer.followings.count %><br>
+      フォロワー数: <%= customer.followers.count %>
+    </div>
   <% end %>
 <% else %>
-  <p>ユーザーはいません</p>
+  <h5>※ユーザーはいません</h5>
 <% end %>

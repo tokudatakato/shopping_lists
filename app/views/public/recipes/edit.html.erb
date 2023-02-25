@@ -1,28 +1,30 @@
 <h5>レシピ編集</h5>
-<%= form_with model: @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
-   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">商品画像</label>
-       <div class="col-4 ml-3">
-      <%= f.file_field :images, accept: "image/*", class: "custom-file-input", direct_upload: true, multiple: true %>
+<div class="ml-5">
+  <%= form_with model: @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">商品画像</label>
+      <div class="col-4 ml-3">
+        <%= f.file_field :images, accept: "image/*", class: "custom-file-input", direct_upload: true, multiple: true %>
         <label class="custom-file-label" data-browse="参照">ファイル選択...</label>
       </div>
-     </div>
-
-   <div class="form-group row">
-        <label class="col-sm-2 col-form-label">タイトル</label>
-       <div class="col-5">
-        <%= f.text_field :title, class: "form-control"%>
-       </div>
     </div>
-
-    <div class="form-group row">
-       <label class="col-sm-2 col-form-label">本文</label>
-    <div class="col-8">
-     <%= f.text_area :body, class: "form-control" %>
-   </div>
-  </div>
   
-  <div class="mt-4 d-flex justify-content-center">
-     <%= f.submit '変更を保存', class:'btn-primary', style:'width: 120px'  %>
-   </div>
-   <% end %>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">タイトル</label>
+      <div class="col-5">
+        <%= f.text_field :title, class: "form-control"%>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">本文</label>
+      <div class="col-8">
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+    </div>
+  
+    <div class="mt-4 d-flex justify-content-center">
+      <%= f.submit '変更を保存', class:'btn-primary', style:'width: 120px'  %>
+    </div>
+  <% end %>
+</div>

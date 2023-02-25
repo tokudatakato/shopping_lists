@@ -3,6 +3,9 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  validates :nickname, presence: true, uniqueness: true
+  validates :email, presence: true
   
   has_one_attached :icon_image
          
@@ -37,6 +40,14 @@ class Customer < ApplicationRecord
   # フォローしているか判定
   def following?(customer)
     followings.include?(customer)
+  end
+  
+  # ゲストログイン
+  def self.guest
+    find_or_create_by!(email: 'guest@guest.mail') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.nickname = "guest_user"
+    end
   end
   
 end

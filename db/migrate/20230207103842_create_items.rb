@@ -2,8 +2,6 @@ class CreateItems < ActiveRecord::Migration[6.1]
   def change
     create_table :items do |t|
       t.integer :category_id,       null: false
-      t.integer :list_item_id
-      t.integer :item_recipe_map_id
       t.string :item_name,           null: false
       t.text :description
       t.integer :price

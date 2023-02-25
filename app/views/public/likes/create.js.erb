@@ -1,1 +1,1 @@
-$('#recipe_<%= @recipe.id %>').html("<%= j(render partial: 'likes/like', locals: { recipe: @recipe }) %>");
+$('#recipe_<%= @recipe.id %>').html("<%= j(render partial: 'public/likes/like', locals: { recipe: @recipe }) %>");

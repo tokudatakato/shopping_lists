@@ -1,22 +1,21 @@
 class Public::LikesController < ApplicationController
   before_action :authenticate_customer!, only: [:create, :destroy]
 
+   before_action :recipe_params
+
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    recipe = Recipe.find(params[:recipe_id])
-    like = current_customer.likes.new(recipe_id: recipe.id)
-    like.save
-    # 通知の作成
-    @recipe.create_notification_like(current_user)
-    # redirect_to request.referer
+    @recipe_like = Like.new(customer_id: current_customer.id, recipe_id: params[:recipe_id])
+    @recipe_like.save
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
-    recipe = Recipe.find(params[:recipe_id])
-    like = current_customer.likes.find_by(recipe_id: recipe.id)
-    like.destroy
-    # redirect_to request.referer
+    @recipe_like = Like.find_by(customer_id: current_customer.id, recipe_id: params[:recipe_id])
+    @recipe_like.destroy
   end
 
+  private
+
+  def recipe_params
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 end

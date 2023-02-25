@@ -1,6 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+// body {
+//   background-image: image-url("hoge.jpg");
+// }
+
 header {
   margin-bottom: 5px;
   border-bottom: 2px solid #000;
@@ -10,11 +14,7 @@ header {
   
 }
 
-.search-form {
-  float: right;
-}
-
-.all-destroy {
+.search-form, .all-destroy, .float-right {
   float: right;
 }
 
@@ -30,4 +30,8 @@ header {
 
 .new-line {
   white-space: pre-wrap;
+}
+
+h5 {
+  margin-left: 50px;
 }

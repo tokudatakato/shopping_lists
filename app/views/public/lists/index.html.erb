@@ -1,17 +1,19 @@
 <h5>リスト一覧</h5>
-<%= form_with model: @list, url:lists_path, local:true do |f| %>
-  <%= f.text_field :list_name, style:'width: 340px' %>
-  <%= f.hidden_field :customer_id, value: current_customer.id %>
-  <%= f.submit "リスト追加", class:'btn-primary mb-1 ml-3' %>
-<% end %>
+<div class="ml-5">
+  <%= form_with model: @list, url:lists_path, local:true do |f| %>
+    <%= f.text_field :list_name, style:'width: 340px' %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.submit "リスト追加", class:'btn-primary mb-1 ml-3' %>
+  <% end %>
 
-<% @lists.each do |list| %>
-  <div class="border-bottom mb-4 mt-3 pl-3" style="width: 320px">
-    <div class="d-inline-block" style="width: 200px">
-      <%= link_to list.list_name, list_path(list) %>
+  <% @lists.each do |list| %>
+    <div class="border-bottom mb-4 mt-3 pl-3" style="width: 320px">
+      <div class="d-inline-block" style="width: 200px">
+        <%= link_to list.list_name, list_path(list) %>
+      </div>
+      <div class="d-inline-block">
+        <%= button_to "削除", list_path(list), method: :delete, class:'btn btn-sm btn-danger px-4 mb-2' %>
+      </div>
     </div>
-    <div class="d-inline-block">
-      <%= button_to "削除", list_path(list), method: :delete, class:'btn btn-sm btn-danger px-4 mb-2' %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

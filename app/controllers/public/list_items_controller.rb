@@ -1,19 +1,27 @@
 class Public::ListItemsController < ApplicationController
-  def new
-    @list_item = ListItem.new
+  
+  def create
+    @list_item = ListItem.new(list_item_params)
+    @list_item.save
+    redirect_to items_path, notice: 'リストに追加しました'
   end
   
   def destroy
-    # @list = List.find(params[:id])
-    # @list_item = List.items.all
-    # if @list_item.destroy
-    #   redirect_to list_path(params[:id])
-    # else
-    #   redirect_to list_path(params[:id])
-    # end
+    @list_item = ListItem.find(params[:id])
+    @list_item.destroy
+    redirect_to lists_path, notice: '商品が削除しました'
+  end
+  
+  def destroy_all
+    @list = List.find(params[:list_id])
+    @list.list_items.destroy_all
+    redirect_to list_path(@list), notice: '商品がすべて削除しました' 
+  end
+  
+  
+  def list_item_params
+    params.require(:list_item).permit(:list_id, :item_id)
   end
 end
 
-# urlにリストidアイテムidのパラメーター
-# @list_item = LitsItem.where(list_id: params[:list_id]).find_by(item_id: params[:item_id])
-# @list_item.destroy
+

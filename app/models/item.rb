@@ -1,4 +1,9 @@
 class Item < ApplicationRecord
+  
+  validates :item_name, presence: true
+  validates :category_id, presence: true
+  validates :is_stock, presence: true
+  
   has_one_attached :item_image
   
   has_many :item_recipe_maps, dependent: :destroy

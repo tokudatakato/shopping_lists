@@ -1,5 +1,6 @@
 class Hashtag < ApplicationRecord
-  # has_many recipes, through: :recipe_taggings
+  has_many :recipe_taggings
+  has_many :recipes, through: :recipe_taggings
    validates :label, presence: true, length: { maximum: 50 }
 
   LEAD_POUND = "[#＃]"

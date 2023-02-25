@@ -22,7 +22,7 @@
     </tr>
   </table>
 
-  <%= form_with model: @list_item, url:lists_path, local:true do |f| %>
+  <%= form_with model: @list_item, local:true do |f| %>
     <!--カート選択-->
     <%= f.collection_select :list_id, List.all, :id, :list_name, class: "form-control", include_blank: "選択して下さい"   %> 
     <%= f.hidden_field :item_id, :value => @item.id %>

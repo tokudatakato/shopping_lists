@@ -1,0 +1,32 @@
+<div>コメント一覧<span class="ml-4">コメント数：<%= recipe.comments.count %></span></div>
+<% comments.each do |comment|%>
+  <div class="border" style="position: relative;">
+    <div class="d-inline-block">
+      <% if comment.customer.icon_image.attached? %>
+        <%= image_tag comment.customer.icon_image, size:"40x40" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "40x40" %>
+      <% end %>
+      <%= link_to comment.customer.nickname, customer_path(comment.customer) %>
+    </div>
+    <div class="d-inline-block ml-3"><%= comment.content %></div>
+    <!--<p>評価 :%= comment.star %>点</p>-->
+    <!--<div id="star-rate%= comment.id%>"></div>    -->
+    <!--<script>-->
+    <!--  $('#star-rate%= comment.id%>').raty({-->
+    <!--    size      : 36,-->
+    <!--    starOff   : '%= asset_path('star-off.png') %>',-->
+    <!--    starOn    : '%= asset_path('star-on.png') %>',-->
+    <!--    half      : '%= asset_path('star-half.png') %>',-->
+    <!--    readOnly: true,-->
+    <!--    score: %= comment.star %>,-->
+    <!--  });-->
+    <!--</script>-->
+    
+    <% if comment.customer = current_customer %>
+      <div style="position: absolute; top:5px; right:5px;">
+        <%= link_to "コメント削除", comment_path(comment), method: :delete, remote: true, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-3' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

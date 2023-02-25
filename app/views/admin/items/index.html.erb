@@ -1,4 +1,14 @@
-<h5>商品一覧</h5>
+<h5 class="d-inline-block text-left">商品一覧</h5>
+<div class="d-inline-block h-2 mb-4">
+ <%= link_to "商品追加", new_admin_item_path, class:'btn btn-sm btn-success ml-5 px-3' %>
+</div>
+
+<div class="search-form mr-5">
+  <%= form_with url: admin_items_search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
 
 <table class="table table-hover ml-auto mr-auto w-75">
     <thead class="border-bottom border-top border-secondary">

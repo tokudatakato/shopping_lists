@@ -12,11 +12,11 @@ class Public::RecipesController < ApplicationController
     
     def create
         @recipe = Recipe.new(recipe_params)
+        @recipe.customer_id = current_customer.id
         if @recipe.save
-          flash[:success] = "作成しました"
-          redirect_to recipes_path
-          # redirect_to recipe_path(@recipe.id)
+          redirect_to recipes_path, notice: 'レシピを作成しました'
         else
+          flash[:alert] = "レシピタイトルまたはレシピ説明を埋めてください"
           render :new
         end
     end
@@ -35,15 +35,13 @@ class Public::RecipesController < ApplicationController
     def update
         @recipe = Recipe.find(params[:id])
         @recipe.update(recipe_params)
-        flash[:notice] = "投稿の更新は成功したよ🙃"
-        redirect_to recipe_path(@recipe.id)
+        redirect_to recipe_path(@recipe.id), notice: 'レシピを更新しました'
     end
     
     def destroy
         @recipe = Recipe.find(params[:id])
         @recipe.destroy
-        flash[:success] = "作成しました"
-        redirect_to recipes_path
+        redirect_to recipes_path, notice: 'レシピを削除しました'
     end
     
     def search

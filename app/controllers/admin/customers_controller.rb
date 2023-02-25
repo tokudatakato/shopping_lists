@@ -13,4 +13,10 @@ class Admin::CustomersController < ApplicationController
         @customer.destory
         redirect_to admin_customers_path
     end
+    
+    def likes
+        @customer = Customer.find(params[:id])
+        likes= Like.where(customer_id: @customer.id).pluck(:recipe_id)
+        @like_recipes = Recipe.find(likes)
+    end
 end

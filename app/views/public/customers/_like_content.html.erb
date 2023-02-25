@@ -1,22 +1,29 @@
 <div id="like_list_<%= recipe.id %>">
-  
   <% if recipe.images.attached? %>
     <% recipe.images.each do |image| %>
-      <%= image_tag image, size:'100x100' %>
+      <%= image_tag image, class: "index-recipe-img", size: '40x100' %>
     <% end %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
   <% end %><br>
+  <!--レシピタイトル-->
   <%= link_to recipe_path(recipe.id) do %>
     <%= recipe.title %>
   <% end %><br>
-  
+  <!--プロフィール画像-->
   <% @customer = recipe.customer %>
   <% if @customer.icon_image.attached? %>
     <%= image_tag @customer.icon_image, size:"30x30" %>
   <% else %>
     <%= image_tag 'no_image', size: "30x30" %>
   <% end %>
-  <%= recipe.customer.nickname %>
-
-  <div id="recipe_<%= recipe.id %>"><%= render "public/likes/like", recipe: recipe %></div>
+  <!--ユーザー名-->
+  <%= recipe.customer.nickname %><br>
+  <!--いいね、コメント数-->
+  <div id="recipe_<%= recipe.id %>" class="d-inline-block">
+    <%= render partial: 'public/likes/like', locals: {recipe: recipe} %> 
+  </div>
+  likes, <%= recipe.comments.count %> comments
   <!--星レビュー-->
 </div>
+

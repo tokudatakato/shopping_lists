@@ -94,8 +94,6 @@ ActiveRecord::Schema.define(version: 2023_02_16_161638) do
 
   create_table "items", force: :cascade do |t|
     t.integer "category_id", null: false
-    t.integer "list_item_id"
-    t.integer "item_recipe_map_id"
     t.string "item_name", null: false
     t.text "description"
     t.integer "price"

@@ -4,19 +4,26 @@ class Admin::RecipesController < ApplicationController
     end
     
     def index
-        @recipes = Recipe.page(params[:page]).per(10)
+        @recipes = Recipe.all
+        # @recipes = Recipe.page(params[:page]).per(10)
     end
     
     def create
         @recipe = Recipe.new(recipe_params)
+        @recipe.customer_id = current_customer.id
         @recipe.save
-        redirect_to recipes_path
-        # redirect_to recipe_path(@recipe.id)
+        if @recipe.save
+          flash[:success] = "作成しました"
+          redirect_to admin_recipes_path
+          # redirect_to recipe_path(@recipe.id)
+        else
+          render :new
+        end
     end
     
     def show
         @recipe = Recipe.find(params[:id])
-         @like = Like.new
+        @like = Like.new
         @comment = Comment.new
         @comments = @recipe.comments
     end
@@ -27,16 +34,22 @@ class Admin::RecipesController < ApplicationController
     
     def update
         @recipe = Recipe.find(params[:id])
-        @recipe.update!(item_params)
-        flash[:notice] = "投稿の更新は成功したよ🙃"
+        @recipe.update(item_params)
+        flash[:notice] = "レシピの更新に成功"
         redirect_to admin_recipe_path(@recipe.id)
     end
     
     def destroy
         @recipe = Recipe.find(params[:id])
         @recipe.destroy
-        flash[:success] = "作成しました"
+        flash[:success] = "レシピを削除しました"
         redirect_to admin_recipes_path
+    end
+    
+    def search
+      @recipes = Recipe.search(params[:keyword])
+      @keyword = params[:keyword]
+      render "index"
     end
     
     private

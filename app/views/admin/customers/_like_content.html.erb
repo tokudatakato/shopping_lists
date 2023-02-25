@@ -1,0 +1,28 @@
+<div id="like_list_<%= recipe.id %>">
+  <% if recipe.images.attached? %>
+    <% recipe.images.each do |image| %>
+      <%= image_tag image, class: "index-recipe-img", size: '40x100' %>
+    <% end %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+  <% end %><br>
+  <!--レシピタイトル-->
+  <%= link_to admin_recipe_path(recipe.id) do %>
+    <%= recipe.title %>
+  <% end %><br>
+  <!--プロフィール画像-->
+  <% @customer = recipe.customer %>
+  <% if @customer.icon_image.attached? %>
+    <%= image_tag @customer.icon_image, size:"30x30" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "30x30" %>
+  <% end %>
+  <!--ユーザー名-->
+  <%= recipe.customer.nickname %><br>
+  <!--いいね、コメント数-->
+  <div>
+    <%= recipe.likes.count %><span style="color:red;">❤︎</span>likes,
+    <%= recipe.comments.count %> comments
+  </div>
+  <!--星レビュー-->
+</div>

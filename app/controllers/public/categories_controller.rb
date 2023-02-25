@@ -7,8 +7,13 @@ class Public::CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
        
-      # category_idと紐づく投稿を取得
+    # category_idと紐づく投稿を取得
     @items = @category.items.order(created_at: :desc).all
+    
+    # リスト追加用
+    @list_item = ListItem.new
+    @customer = current_customer
+    @lists = @customer.lists.all
   end
   
   private

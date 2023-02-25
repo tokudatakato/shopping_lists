@@ -11,60 +11,19 @@
         <%= image_tag 'no_image', size: "100x100" %>
       <% end %>
       
-      <%= form_with model: @comment do |f| %>
-      <div class="ml-3 mb-5">
-        <%= f.hidden_field :recipe_id, value: @recipe.id %>
-        <div class="mt-5 text_center">
-          <%= f.label :content, 'コメント入力' %>
-          <%= f.text_field :content, class: "text-field" %>
-        </div>
-        
-        <!--<div class="" id="star">-->
-        <!--  %= f.label :star,'評価 ' %>-->
-        <!--  %= f.hidden_field :star, id: :review_star %>-->
-        <!--</div>-->
-      
-        <!-- 評価javascript -->
-         <script>
-        // $('#star').raty({
-        //   size     : 36,
-        //   starOff:  '%= asset_path('star-off.png') %>',
-        //   starOn : '%= asset_path('star-on.png') %>',
-        //   starHalf: '%= asset_path('star-half.png') %>',
-        //   scoreName: 'comment[star]',
-        //   half: true,
-        // });
-        // </script> 
-        <%= f.submit 'コメント投稿', class: "btn-primary px-3" %>
-      </div>
-    <% end %>
-    </div>
-    
-    <div class="col-md-7">
-      <div class="mb-2"><%= @recipe.title %></div>
-      
-      <div class="mb-2">投稿者　<%= @recipe.customer.nickname %></div>
-      
-      <div class="d-inline-block mb-2">
-        <%= button_to "レシピ削除", admin_recipe_path(@recipe), method: :delete, class:'btn btn-sm btn-danger px-3' %>
-      </div>
-      
-      <div id="recipe_<%= @recipe.id %>">
-        <%= render "public/likes/like", recipe: @recipe %>
-        likes
-      </div>
-      
-      <!--%= @recipe.body %>-->
-      <div class="recipe_body">
-        <% body_and_hashtags_in_array(@recipe.body).each do |word| %>
-         <%= word %>
-        <% end %>
-      </div>
-      
+      <div class="mt-4">コメント一覧<span class="ml-4">コメント数：<%= @recipe.comments.count %></span></div>
       <% @comments.each do |comment|%>
-      <div class=card>
-        <p>内容:<%= comment.content %></p>
-        <p>評価 :<%= comment.star %>点</p>
+      <div class="border" style="position: relative;">
+        <div class="d-inline-block">
+          <% if comment.customer.icon_image.attached? %>
+            <%= image_tag comment.customer.icon_image, size:"40x40" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "40x40" %>
+          <% end %>
+          <%= link_to comment.customer.nickname, customer_path(comment.customer) %>
+        </div>
+        <div class="d-inline-block ml-3"><%= comment.content %></div>
+        <!--<p>評価 :%= comment.star %>点</p>-->
         <!--<div id="star-rate%= comment.id%>"></div>    -->
         <!--<script>-->
         <!--  $('#star-rate%= comment.id%>').raty({-->
@@ -76,10 +35,35 @@
         <!--    score: %= comment.star %>,-->
         <!--  });-->
         <!--</script>-->
+        
+          <div style="position: absolute; top:5px; right:5px;">
+            <%= link_to "コメント削除", comment_path(comment), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-3' %>
+          </div>
+        
       </div>
     <% end %>
+      
     </div>
     
-    
+    <div class="col-md-7">
+      <div class="mb-2"><%= @recipe.title %></div>
+      
+      <div class="mb-2">投稿者　<%= @recipe.customer.nickname %></div>
+      
+      <div class="d-inline-block mb-2">
+        <%= button_to "レシピ削除", admin_recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-3' %>
+      </div>
+      
+      <div>
+        <%= @recipe.likes.count %><span style="color:red;">❤︎</span>likes
+      </div>
+      
+      <!--%= @recipe.body %>-->
+      <div class="new-line">
+        <% body_and_hashtags_in_array(@recipe.body).each do |word| %>
+         <%= word %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

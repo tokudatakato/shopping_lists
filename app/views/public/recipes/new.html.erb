@@ -13,12 +13,12 @@
   
   <label class="col-sm-2 col-form-label">本文</label>
   <div class="col-10">
-    <%= f.text_area :body, class: "form-control" %>
+    <%= f.text_area :body, class: "form-control",:placeholder => "Enter your email..." %>
   </div>
   
   <%= f.hidden_field :customer_id, value: current_customer.id %>
   
-  <div class="mt-5 ml-3">
+  <div class="mt-5 text-center">
    <%= f.submit '投稿する', class:'btn-primary', style: 'width: 100px' %>
  　</div>
   <% end %>

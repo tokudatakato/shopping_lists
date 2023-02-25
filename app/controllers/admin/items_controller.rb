@@ -1,6 +1,17 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.page(params[:page]).per(10)
+    # urlにcategory_id(params)がある場合
+    if params[:category_id]
+      # Categoryのデータベースのテーブルから一致するidを取得
+      @category = Category.find(params[:category_id])
+       
+      # category_idと紐づく投稿を取得
+      @items = @category.items.all
+      @list_item = ListItem.new
+    else
+      # 投稿すべてを取得
+      @items = Item.all
+    end
   end
   
   def new
@@ -26,6 +37,12 @@ class Admin::ItemsController < ApplicationController
     @item.update!(item_params)
     flash[:notice] = "アイテムの更新は成功したよ🙃"
     redirect_to admin_item_path(@item.id)
+  end
+  
+  def search
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
   end
   
   private

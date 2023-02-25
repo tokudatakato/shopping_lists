@@ -5,6 +5,7 @@ class Like < ApplicationRecord
   belongs_to :customer
   belongs_to :recipe
   
+  # いいねをしているか判定
   def liked_by?(recipe_id)
     likes.where(recipe_id: recipe_id).exists?
   end

@@ -1,14 +1,17 @@
 <h5 class="d-inline"><%= @list.list_name %>リスト詳細</h5>
-<div class="all-destroy mr-5">リスト内商品削除</div>
+<div class="all-destroy mr-5"> 
+  <div><%= link_to "リスト内商品削除", destroy_all_list_items_path(list_id: @list.id), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger' %></div>
+  <div id="checkoff" class="btn btn-sm btn-success mt-3" style="width: 130px;">全解除</div>
+</div>
 
-<ul class="list mt-4" style="list-style: none;">
-  <% @list.items.each do |list_item| %>
-    <li class="list__item mb-2 border-bottom pl-3">
-      <label class="label--checkbox">
-        <input type="checkbox" class="checkbox" checked>
-        <%= list_item.item_name %>
+<ul class="list mt-4" style="list-style: none;" name="list_item_form">
+  <% @list.list_items.each do |list_item| %>
+    <li class="list__item mb-2 border-bottom w-50 pl-3 mb-4">
+      <label class="w-75">
+        <input class="checks" type="checkbox" name="<%= @list.list_name %>" value="<%= list_item.item.item_name %>" >
+        <%= list_item.item.item_name %>
       </label>
-      削除
+      <%= link_to "削除", list_item_path(list_item.id), method: :delete, class:'btn btn-sm btn-danger' %>
     </li>
   <% end %>
 </ul>

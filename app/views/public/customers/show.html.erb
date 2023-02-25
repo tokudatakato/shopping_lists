@@ -1,38 +1,51 @@
 <h5><%= @customer.nickname %>の投稿ページ</h5>
 
-<p>
-  <%= link_to "お気に入りレシピ", likes_customer_path(@customer) %>
-  <%= @customer.likes.count %>
-</p>
+<div class="ml-5">
+  <div class="mb-3">profile : <%= @customer.profile %></div>
 
-<%= link_to "フォロー", customer_followings_path(@customer) %><%= @customer.followings.count %>
-<%= link_to "フォロワー", customer_followers_path(@customer) %><%= @customer.followers.count %>
-
-<!--% if @customer != current_customer %>-->
-<!--  % if current_customer.following?(@customer) %>-->
-<!--    %= link_to "フォロー外す", customer_relationships_path(@customer.id), method: :delete %>-->
-<!--  % else %>-->
-<!--    %= link_to "フォローする", customer_relationships_path(@customer.id), method: :post %>-->
-<!--  % end %>-->
-<!--% end %>-->
-
-<div class="my-3">
-  <% if @customer == current_customer %>
-      <%= link_to "登録情報を編集する", edit_customer_path(@customer) %>
-  <% end %>
-</div>
-<% @recipes.each do |recipe| %>
-  <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
-    <% if recipe.images.attached? %>
-        <% recipe.images.each do |image| %>
-            <%= image_tag image, size:'100x100' %>
-        <% end %>
-    <% end %><br>
-    <%= link_to recipe_path(recipe) do %>
-        <%= recipe.title %>
-    <% end %><br>
-    <div id="recipe_<%= recipe.id %>"><%= render "public/likes/like", recipe: recipe %></div>
-    <!--星レビュー-->
+  <div class="mb-3">
+    <%= link_to "お気に入りレシピ", likes_customer_path(@customer) %>
+    <%= @customer.likes.count %>
   </div>
-<% end %>
+  
+  <%= link_to "フォロー", customer_followings_path(@customer) %><%= @customer.followings.count %>
+  <%= link_to "フォロワー", customer_followers_path(@customer) %><%= @customer.followers.count %>
+  
+  <% if @customer != current_customer %>
+    <% if current_customer.following?(@customer) %>
+      <%= link_to "フォロー外す", customer_relationships_path(@customer.id), method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post %>
+    <% end %>
+  <% end %>
+  
+  <div class="my-3">
+    <% if @customer == current_customer %>
+        <%= link_to "登録情報を編集する", edit_customer_path(@customer) %>
+    <% end %>
+  </div>
+  
+  <% @recipes.each do |recipe| %>
+    <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
+      <% if recipe.images.attached? %>
+        <% recipe.images.each do |image| %>
+          <%= image_tag image, class: "index-recipe-img", size: '40x100' %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'no_image', size: "100x100" %>
+      <% end %><br>
+      <!--レシピタイトル-->
+      <%= link_to recipe_path(recipe) do %>
+        <%= recipe.title %>
+      <% end %><br>
+      
+      <!--いいね、コメント数-->
+      <div id="recipe_<%= recipe.id %>" class="d-inline-block">
+        <%= render partial: 'public/likes/like', locals: {recipe: recipe} %> 
+      </div>
+      likes, <%= recipe.comments.count %> comments
+      <!--星レビュー-->
+    </div>
+  <% end %>
     
+</div>

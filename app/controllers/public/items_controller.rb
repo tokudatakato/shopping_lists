@@ -12,6 +12,8 @@ class Public::ItemsController < ApplicationController
       # 投稿すべてを取得
       @items = Item.order(created_at: :desc).all
       @list_item = ListItem.new
+      @customer = current_customer
+      @lists = @customer.lists.all
     end
   end
 
@@ -25,8 +27,9 @@ class Public::ItemsController < ApplicationController
     @keyword = params[:keyword]
     render "index"
   end
-
+  
+private
   def item_params
-    params.require(:item).permit(:image, :category_id, :list_item_id, :item_recipe_map_id, :item_name, :description, :price, :is_stock)
+    params.require(:item).permit(:image, :category_id, :item_name, :description, :price, :is_stock)
   end
 end

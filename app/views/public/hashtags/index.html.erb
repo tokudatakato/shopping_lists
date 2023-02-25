@@ -1,24 +1,37 @@
-<h2 class="text-center text-secondary mt-5"><%= "#" + @label %>のタグを含む投稿一覧</h2>
+<h5 class="text-center text-secondary mt-3 mb-3"><%= "#" + @label %>のタグを含む投稿一覧</h5>
 
+<div class="text-center">
 <% @recipes.each do |recipe| %>
-    <div class="row">
+    <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
+      <!--レシピ画像-->
+      <div class="slider">
+        <% if recipe.images.attached? %>
+          <% recipe.images.each do |image| %>
+            <%= image_tag image, class: "index-recipe-img", size: '40x100' %>
+          <% end %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+      </div>
+      <!--レシピタイトル-->
+      <%= link_to recipe_path(recipe.id) do %>
+        <%= recipe.title %>
+      <% end %><br>
+      <!--プロフィール画像-->
       <% @customer = recipe.customer %>
       <% if @customer.icon_image.attached? %>
         <%= image_tag @customer.icon_image, size:"30x30" %>
       <% else %>
         <%= image_tag 'no_image', size: "30x30" %>
       <% end %>
+      <!--ユーザー名-->
       <%= recipe.customer.nickname %>
-      <%= link_to recipe_path(recipe.id) do %>
-        <%= recipe.title %>
-      <% end %>
+      <!--いいね、コメント数-->
       <div id="recipe_<%= recipe.id %>">
-        <%= render partial: 'public/likes/like', locals: {recipe: recipe} %>
-        likes
+        <%= render partial: 'public/likes/like', locals: {recipe: recipe} %> likes
+        , <%= recipe.comments.count %> comments
       </div>
+      <!--評価星-->
     </div>
   <% end %>
-  
-  <% body_and_hashtags_in_array(recipe.body).each do |word| %>
-    <%= word %>
-  <% end %>
+</div>

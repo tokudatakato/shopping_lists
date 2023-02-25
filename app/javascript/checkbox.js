@@ -11,3 +11,12 @@
  *  - https://codepen.io/Sambego/pen/ICsjd
  *  - https://codepen.io/Sambego/pen/mIhbk
  */
+ 
+$(function allcheck(){
+  var checkoff = '#checkoff';
+  var checkbox = '.checks';
+  
+  $( checkoff ).on('click', function() {
+    $( checkbox ).prop('checked', false );
+  });
+});

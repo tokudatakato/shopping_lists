@@ -1,24 +1,31 @@
 <h5>編集画面</h5>
-<%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
 
-<div class="mb-3">
-  <%= f.label :"profile_image" %>
-  <%= f.file_field :icon_image, accept: "image/*" %>
+<div class="ml-5">
+  <%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
+
+    <div class="mb-3">
+      <%= f.label :"profile_image" %>
+      <%= f.file_field :icon_image, accept: "image/*" %>
+    </div>
+    
+    <div class="mb-3">
+      <%= f.label :"nickname", style:'width: 93px' %>
+      <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    </div>
+    
+    <div class="mb-3">
+      <%= f.label :"profile", style:'width: 93px; line-height: 53px' %>
+      <%= f.text_area :profile, autofocus: true, autocomplete: "profile", class:'w-50' %>
+    </div>
+    
+    <div class="mb-3">
+      <%= f.label :"email", style:'width: 93px' %>
+      <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+    
+    <%= f.submit '変更を保存', class:'btn-primary w-25'  %>
+    
+    <%= link_to '退会する', customers_confirm_path, class:'btn btn-sm btn-danger ml-5' %>
+  <% end %>
+
 </div>
-<div class="mb-3">
-  <%= f.label :"nickname", style:'width: 93px' %>
-  <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-</div>
-<div class="mb-3">
-  <%= f.label :"profile", style:'width: 93px; line-height: 53px' %>
-  <%= f.text_area :profile, autofocus: true, autocomplete: "profile", class:'w-50' %>
-</div>
-<div class="mb-3">
-  <%= f.label :"email", style:'width: 93px' %>
-  <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-</div>
-  
-  <%= f.submit '変更を保存', class:'btn-primary w-25'  %>
-  
-  <%= link_to '退会する', customers_confirm_path, class:'btn btn-sm btn-danger ml-5' %>
-<% end %>

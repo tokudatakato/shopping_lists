@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
-    <link rel="stylesheet" href="stylesheet/sidebar.scss">
-    <link rel="stylesheet" href="../stylesheets/likes.css">
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     
@@ -29,29 +26,35 @@
               <%= image_tag 'no_image', size: "50x50" %>
             <% end %>
           </bottom>
+        <% elsif admin_signed_in? %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'btn btn-sm btn-danger h-75 mt-2 ml-3' %>
         <% end %>
-        <div class="f-right">
+        
+        <div class="mt-4 ml-5 pl-5"><%= notice %><%= alert %></div>
+        
+        <div class="f-right mt-3">
           <% if admin_signed_in? %>
-            <%= link_to "商品", admin_items_path, class: 'btn' %>
-            <%= link_to "レシピ", admin_recipes_path, class: 'btn' %>
-            <%= link_to "投稿者", admin_customers_path, class: 'btn' %>
+            <%= link_to "商品", admin_items_path, class: 'btn border mr-4' %>
+            <%= link_to "レシピ", admin_recipes_path, class: 'btn border mr-4' %>
+            <%= link_to "投稿者", admin_customers_path, class: 'btn border mr-4' %>
             
           <% elsif customer_signed_in? %>
-            <%= link_to "商品", items_path, class: 'btn' %>
-            <%= link_to "レシピ", recipes_path, class: 'btn' %>
-            <%= link_to "リスト", lists_path, class:'btn' %>
-            <%= link_to "投稿者", customers_path, class: 'btn' %>
+            <%= link_to "商品", items_path, class: 'btn border mr-4' %>
+            <%= link_to "レシピ", recipes_path, class: 'btn border mr-4' %>
+            <%= link_to "リスト", lists_path, class:'btn border mr-4' %>
+            <%= link_to "投稿者", customers_path, class: 'btn border mr-4' %>
             
           <% else %>
-            <%= link_to "ログイン", new_customer_session_path %>
-            <%= link_to "サインイン", new_customer_registration_path %>
+            <%= link_to 'ゲストログイン（閲覧用）', customers_guest_log_in_path, method: :post, class: 'btn border mr-4' %>
+            <%= link_to "ログイン", new_customer_session_path, class: 'btn border mr-4' %>
+            <%= link_to "サインイン", new_customer_registration_path, class: 'btn border mr-4' %>
             
           <% end %>
         </div>
       </div>
     </header>
     
-    <main>
+    <main style="min-height: 450px">
       <% if customer_signed_in? %>
         <div class="sidebar border-right mr-4">
           <ul>
@@ -62,14 +65,18 @@
             </li>
             <li class="nav-item"><%= link_to "お気に入りレシピ", likes_customer_path(current_customer) %></li>
             <li class="nav-item"><%= link_to "ユーザー編集", edit_customer_path(current_customer) %></li>
-            <li class="nav-item"><%= button_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+            <li class="nav-item"><%= button_to "ログアウト", destroy_customer_session_path, method: :delete, class:'btn btn-sm btn-danger mt-5' %></li>
           </ul>
         </div>
       <% end %>
-      <div class="main-contents my-3 ml-5">
+      <div class="main-contents my-3">
         <%= yield %>
       </div></div> 
     </main>
+    
+    <footer class="border-top text-center pt-2 pb-3">
+      <small>&copy; 2023.2.26 tokuda</small>
+    </footer>
 
   </body>
 </html>

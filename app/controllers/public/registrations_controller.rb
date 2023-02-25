@@ -3,7 +3,19 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   
   def after_sign_in_path_for(resource)
-    recipes_path
+    root_path
+  end
+  
+  def check_guest
+    if resource.email == 'guest@guest.mail'
+      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    end
+  end
+  
+  def ensure_normal_custoemr
+    if resource.email == 'guest@guest.mail'
+      redirect_to customer_path(@customer.id), notice: 'ゲストユーザーは編集できません'
+    end
   end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]

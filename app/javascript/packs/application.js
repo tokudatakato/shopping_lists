@@ -3,13 +3,6 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-var trigger = document.getElementById('js-trigger');
-if(trigger){
-  trigger.addEventListener('click', function(){
-    var target = document.getElementById('sidebar');
-    target.classList.toggle('open-sidebar');
-  }, false);
-}
 
 import Rails from "@rails/ujs"
 //import Turbolinks from "turbolinks"
@@ -26,7 +19,7 @@ import "../stylesheets/sidebar"
 import "../stylesheets/checkbox"
 import "sidebar.js" 
 import "checkbox.js"
-import "slick"
+// import "../packs/slick" 
 
 Rails.start()
 //Turbolinks.start()
@@ -36,4 +29,4 @@ ActiveStorage.start()
 //= require rails-ujs
 window.$ = window.jQuery = require('jquery'); 
 require('packs/raty')
-
+require('packs/slick')

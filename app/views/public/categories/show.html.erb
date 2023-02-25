@@ -1,15 +1,24 @@
-<h5>カテゴリー詳細</h5>
-<% @items.each do |item| %>
-  
-  <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
-    <% if item.item_image.attached? %>
-      <%= image_tag item.item_image, size:"80x80" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "80x80" %>
-    <% end %><br>
+<h5>カテゴリー：<%= @category.category_name %></h5>
+<div class="text-center">
+  <% @items.each do |item| %>
+    <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
+      <% if item.item_image.attached? %>
+        <%= image_tag item.item_image, size:"80x80" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "80x80" %>
+      <% end %><br>
+      
+      <%= link_to item.item_name, item_path(item) %><br>
     
-    <%= link_to item.item_name, item_path(item) %><br>
-  
-    ￥<%= item.price %>
-  </div>
-<% end %>
+      ￥<%= item.price %>
+      
+      <%= form_with model: @list_item, local: true do |f| %>
+        <!--カート選択-->
+        <!--%= f.collection_select :list_id, @lists, :id, :list_name, class: "form-control", include_blank: "選択して下さい"   %> -->
+        <%= f.collection_select :list_id, @lists, :id, :list_name, prompt: "選択してください" %>
+        <%= f.hidden_field :item_id, :value => item.id %><br>
+        <%= f.submit "リストに追加する", class:'mt-3 btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
