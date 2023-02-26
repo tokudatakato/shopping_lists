@@ -23,7 +23,7 @@
             <% if current_customer.icon_image.attached? %>
               <%= image_tag current_customer.icon_image, size:"50x50" %>
             <% else %>
-              <%= image_tag 'no_image', size: "50x50" %>
+              <%= image_tag 'no_image.jpg', size: "50x50" %>
             <% end %>
           </bottom>
         <% elsif admin_signed_in? %>

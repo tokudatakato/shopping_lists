@@ -10,7 +10,7 @@
             <%= image_tag image, class: "index-recipe-img", size: '40x100' %>
           <% end %>
         <% else %>
-          <%= image_tag 'no_image', size: "100x100" %>
+          <%= image_tag 'no_image.jpg', size: "100x100" %>
         <% end %>
       </div>
       <!--レシピタイトル-->
@@ -22,7 +22,7 @@
       <% if @customer.icon_image.attached? %>
         <%= image_tag @customer.icon_image, size:"30x30" %>
       <% else %>
-        <%= image_tag 'no_image', size: "30x30" %>
+        <%= image_tag 'no_image.jpg', size: "30x30" %>
       <% end %>
       <!--ユーザー名-->
       <%= recipe.customer.nickname %>

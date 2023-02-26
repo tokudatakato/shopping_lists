@@ -5,7 +5,7 @@
       <% if item.item_image.attached? %>
         <%= image_tag item.item_image, size:"80x80" %>
       <% else %>
-        <%= image_tag 'no_image', size: "80x80" %>
+        <%= image_tag 'no_image.jpg', size: "80x80" %>
       <% end %><br>
       
       <%= link_to item.item_name, item_path(item) %><br>
