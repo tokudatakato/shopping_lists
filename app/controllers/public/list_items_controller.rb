@@ -1,9 +1,13 @@
 class Public::ListItemsController < ApplicationController
+  before_action :autheniticate_customer!
   
   def create
     @list_item = ListItem.new(list_item_params)
-    @list_item.save
-    redirect_to items_path, notice: 'リストに追加しました'
+    if @list_item.save
+      redirect_to items_path, notice: 'リストに追加しました'
+    else
+      redirect_to items_path, alert: 'リストを選択してください'
+    end
   end
   
   def destroy

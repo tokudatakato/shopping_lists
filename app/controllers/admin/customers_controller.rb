@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+    
     def index
         @customers = Customer.all
     end
@@ -8,10 +9,10 @@ class Admin::CustomersController < ApplicationController
         @recipes = @customer.recipes
     end
 
-    def destory
-        @customer = customer.find(params[:id])
-        @customer.destory
-        redirect_to admin_customers_path
+    def destroy
+        @customer = Customer.find(params[:id])
+        @customer.destroy
+        redirect_to admin_customers_path, alert: 'ユーザーを削除しました'
     end
     
     def likes

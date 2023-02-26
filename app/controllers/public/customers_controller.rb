@@ -1,7 +1,10 @@
 class Public::CustomersController < ApplicationController
+    before_action :authenticate_customer!
     
     def index
         @customers = Customer.all
+        @posted_customer = params[:posted_customer]
+#        @customers = Customer.left_joins(:recipes)
         # レシピ投稿をしているユーザーだけを表示させる
     end
     
@@ -22,9 +25,6 @@ class Public::CustomersController < ApplicationController
         else
             render:edit
         end
-    end
-
-    def confirm
     end
     
     def destory

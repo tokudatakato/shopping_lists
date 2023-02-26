@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :autheniticate_customer!
+  
   def create
     @comment = Comment.new(comment_params)
     @comment.save
@@ -9,9 +11,8 @@ class Public::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash.now[:alert] = '投稿を削除しました'
-    @recipe = Recipe.find(params[:recipe_id]) 
-    render :recipe_comments
+    @recipe = @comment.recipe
+    @comments = @recipe.comments
   end
 
   private

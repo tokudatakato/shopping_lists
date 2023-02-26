@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     
     # 検索機能
     get 'items/search' => 'items#search'
+    post 'items/search' => 'list_items#create'
     get 'recipes/search' => 'recipes#search'
     
     # コメント機能

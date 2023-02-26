@@ -1,7 +1,7 @@
 class Public::LikesController < ApplicationController
   before_action :authenticate_customer!, only: [:create, :destroy]
 
-   before_action :recipe_params
+  before_action :recipe_params
 
   def create
     @recipe_like = Like.new(customer_id: current_customer.id, recipe_id: params[:recipe_id])

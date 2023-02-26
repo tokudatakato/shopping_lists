@@ -1,7 +1,18 @@
-<h5>投稿者一覧</h5>
+<h5 class="d-inline-block">
+  <% if @posted_customer %>
+    投稿者一覧
+  <% else %>
+    ユーザー一覧
+  <% end %>
+</h5>
+<div class="d-inline-block float-right mr-5">
+  <%= link_to '投稿者一覧', customers_path(posted_customer: true), class:'btn btn-sm btn-success' %>
+</div>
+
 
 <div class="text-center">
   <% @customers.each do |customer| %>
+    <% next if @posted_customer && customer.recipes.length <= 0 %>
     <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
       <% if customer.icon_image.attached? %>
         <%= image_tag customer.icon_image, size:"80x80" %>

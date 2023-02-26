@@ -1,4 +1,5 @@
 class Admin::RelationshipsController < ApplicationController
+  
   # フォロー一覧
   def followings
     customer = Customer.find(params[:customer_id])

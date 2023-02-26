@@ -27,29 +27,32 @@
             <% end %>
           </bottom>
         <% elsif admin_signed_in? %>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'btn btn-sm btn-danger h-75 mt-2 ml-3' %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'btn btn-sm btn-danger h-75 mt-3 ml-4' %>
         <% end %>
         
-        <div class="mt-4 ml-5 pl-5"><%= notice %><%= alert %></div>
+        <div class="mt-4 ml-3"><%= notice %><%= alert %></div>
         
-        <div class="f-right mt-3">
-          <% if admin_signed_in? %>
-            <%= link_to "商品", admin_items_path, class: 'btn border mr-4' %>
-            <%= link_to "レシピ", admin_recipes_path, class: 'btn border mr-4' %>
-            <%= link_to "投稿者", admin_customers_path, class: 'btn border mr-4' %>
-            
-          <% elsif customer_signed_in? %>
-            <%= link_to "商品", items_path, class: 'btn border mr-4' %>
-            <%= link_to "レシピ", recipes_path, class: 'btn border mr-4' %>
-            <%= link_to "リスト", lists_path, class:'btn border mr-4' %>
-            <%= link_to "投稿者", customers_path, class: 'btn border mr-4' %>
-            
-          <% else %>
-            <%= link_to 'ゲストログイン（閲覧用）', customers_guest_log_in_path, method: :post, class: 'btn border mr-4' %>
-            <%= link_to "ログイン", new_customer_session_path, class: 'btn border mr-4' %>
-            <%= link_to "サインイン", new_customer_registration_path, class: 'btn border mr-4' %>
-            
-          <% end %>
+        <div class="f-right">
+          <div class="mt-3 mb-2">
+            <% if admin_signed_in? %>
+              <%= link_to "商品", admin_items_path, class: 'btn border mr-4' %>
+              <%= link_to "レシピ", admin_recipes_path, class: 'btn border mr-4' %>
+              <%= link_to "ユーザー", admin_customers_path, class: 'btn border mr-4' %>
+              <%= link_to "カテゴリー", admin_categories_path, class: 'btn border mr-4' %>
+          </div>
+          <div class="mt-3">
+            <% elsif customer_signed_in? %>
+              <%= link_to "商品", items_path, class: 'btn border mr-4' %>
+              <%= link_to "レシピ", recipes_path, class: 'btn border mr-4' %>
+              <%= link_to "リスト", lists_path, class:'btn border mr-4' %>
+              <%= link_to "ユーザー", customers_path, class: 'btn border mr-4' %>
+              
+            <% else %>
+              <%= link_to 'ゲストログイン（閲覧用）', customers_guest_log_in_path, method: :post, class: 'btn border mr-4' %>
+              <%= link_to "ログイン", new_customer_session_path, class: 'btn border mr-4' %>
+              <%= link_to "サインイン", new_customer_registration_path, class: 'btn border mr-4' %>
+            <% end %>
+          </div>
         </div>
       </div>
     </header>

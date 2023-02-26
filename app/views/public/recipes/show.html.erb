@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-5 slider">
+    <div class="col-md-5 slider mb-5">
       <% if @recipe.images.attached? %>
         <% @recipe.images.each do |image| %>
           <%= image_tag image, class: "show-recipe-image" %>
@@ -24,7 +24,9 @@
     <div class="col-md-7">
       <div class="mb-2"><%= @recipe.title %></div>
       
-      <div class="mb-2">投稿者　<%= @recipe.customer.nickname %></div>
+      <div class="mb-2">
+        投稿者　<%= link_to @recipe.customer.nickname, customer_path(@recipe.customer) %>
+      </div>
       
       <% if @recipe.customer == current_customer %>
       <div class="d-inline-block">
@@ -35,9 +37,11 @@
         </div>
       <% end %>
       
-      <div id="recipe_<%= @recipe.id %>">
-        <%= render "public/likes/like", recipe: @recipe %>
-        likes
+      <div>
+        <div id="recipe_<%= @recipe.id %>" class="d-inline-block">
+          <%= render partial: 'public/likes/like', locals: {recipe: @recipe} %> 
+        </div>
+          likes
       </div>
       
       <!--%= @recipe.body %>-->

@@ -1,15 +1,30 @@
 <h5>カテゴリー詳細</h5>
-<% @items.each do |item| %>
-  
-  <div class="border d-inline-block my-3 mx-3 px-3 py-3 text-center">
-    <% if item.item_image.attached? %>
-      <%= image_tag item.item_image, size:"80x80" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "80x80" %>
-    <% end %><br>
-    
-    <%= link_to item.item_name, admin_item_path(item) %><br>
-  
-    ￥<%= item.price %>
-  </div>
-<% end %>
+<table class="table table-hover ml-auto mr-auto w-75">
+  <thead class="border-bottom border-top border-secondary">
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>カテゴリー</th>
+      <th>在庫ステータス</th>
+    </tr>
+  </thead>
+  <tbody class="border-bottom border-secondary font-weight-bold">
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= link_to item.item_name, admin_item_path(item.id) %></td>
+        <td><%= item.price %></td>
+        <!--カテゴリー名を表示させる-->
+        <td><%= item.category.category_name %></td>
+        <td>
+          <% if item.is_stock %>
+            <span class="text-success">在庫あり</span>
+          <% else item.is_stock %>
+            <span class="text-secondary">在庫なし</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

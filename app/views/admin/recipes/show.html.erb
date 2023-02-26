@@ -20,7 +20,7 @@
           <% else %>
             <%= image_tag 'no_image', size: "40x40" %>
           <% end %>
-          <%= link_to comment.customer.nickname, customer_path(comment.customer) %>
+          <%= link_to comment.customer.nickname, admin_customer_path(comment.customer) %>
         </div>
         <div class="d-inline-block ml-3"><%= comment.content %></div>
         <!--<p>評価 :%= comment.star %>点</p>-->
@@ -37,7 +37,7 @@
         <!--</script>-->
         
           <div style="position: absolute; top:5px; right:5px;">
-            <%= link_to "コメント削除", comment_path(comment), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-3' %>
+            <%= link_to "コメント削除", admin_comment_path(comment), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-3' %>
           </div>
         
       </div>
@@ -48,7 +48,9 @@
     <div class="col-md-7">
       <div class="mb-2"><%= @recipe.title %></div>
       
-      <div class="mb-2">投稿者　<%= @recipe.customer.nickname %></div>
+      <div class="mb-2">
+        投稿者　<%= link_to @recipe.customer.nickname, admin_customer_path(@recipe.customer) %>
+      </div>
       
       <div class="d-inline-block mb-2">
         <%= button_to "レシピ削除", admin_recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-3' %>

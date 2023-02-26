@@ -1,4 +1,6 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
     # urlにcategory_id(params)がある場合
     if params[:category_id]
@@ -26,6 +28,7 @@ class Public::ItemsController < ApplicationController
     @lists = current_customer.lists.all
     @items = Item.search(params[:keyword])
     @keyword = params[:keyword]
+    @list_item = ListItem.new
     render "index"
   end
   

@@ -1,5 +1,5 @@
 class Public::RecipesController < ApplicationController
-  before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_customer!
   
     def new
         @recipe = Recipe.new
